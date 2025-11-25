@@ -2,11 +2,23 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { XCircle, Play, RotateCcw, FastForward, ChevronDown } from 'lucide-react';
 
 // Sintetizador de sonido simple usando Web Audio API
-const playSound = (type) => {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return;
+// Crear un único contexto de audio global para evitar problemas de límite
+let audioContext = null;
 
-    const ctx = new AudioContext();
+const getAudioContext = () => {
+    if (!audioContext) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+            audioContext = new AudioContext();
+        }
+    }
+    return audioContext;
+};
+
+const playSound = (type) => {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
@@ -75,9 +87,10 @@ const SpaceInvaders = ({ onClose }) => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        // Ajustar canvas al tamaño del contenedor
+        // Ajustar canvas al tamaño del contenedor con ancho mínimo
         const parent = canvas.parentElement;
-        canvas.width = parent.clientWidth;
+        const idealWidth = Math.min(Math.max(parent.clientWidth, 800), 1200);
+        canvas.width = idealWidth;
         canvas.height = Math.min(window.innerHeight * 0.7, 600);
 
         const g = gameRef.current;
@@ -280,8 +293,9 @@ const SpaceInvaders = ({ onClose }) => {
                 }
             });
 
-            // Game Over if aliens reach bottom
-            if (lowestAlienY > g.player.y) {
+            // Game Over if aliens reach bottom (con verificación de seguridad)
+            const aliveAliensCheck = g.aliens.filter(a => a.alive);
+            if (aliveAliensCheck.length > 0 && lowestAlienY > g.player.y - 10) {
                 playSound('gameover');
                 setGameState('gameover');
             }

@@ -13,17 +13,17 @@ export const education = [
     {
         year: "2024 - 2025",
         degree: "Máster FP Ciberseguridad (CETI)",
-        institution: "Especialización en ciberseguridad en entornos TI"
+        institution: "Curso de Especialización en Ciberseguridad en Entornos de las Tecnologías de la Información. Formación avanzada en análisis de vulnerabilidades, hacking ético, hardening de sistemas y respuesta ante incidentes de seguridad."
     },
     {
         year: "2022 - 2024",
         degree: "Grado Superior ASIR",
-        institution: "Administración de Sistemas Informáticos en Red"
+        institution: "Administración de Sistemas Informáticos en Red. Especialización en gestión de infraestructuras IT, virtualización, scripting avanzado, configuración de servicios de red y administración de sistemas GNU/Linux y Windows Server."
     },
     {
         year: "2020 - 2022",
-        degree: "Grado Medio SMR",
-        institution: "Sistemas Microinformáticos y Redes"
+        degree: "Ingeniería Civil en Computación",
+        institution: "Universidad de Talca, Chile. Completé cinco semestres (dos años y medio) de la carrera antes de emigrar a España. Formación en fundamentos de programación, estructuras de datos, cálculo, álgebra lineal y arquitectura de computadores."
     }
 ];
 
@@ -70,15 +70,16 @@ export const personalInfo = {
 export const experience = [
     {
         period: "Marzo 2024 - Actualidad",
-        role: "Área IT",
-        company: "Norsol - Energía Solar ",
-        description: "Administración de usuarios y Active Directory. Apoyando en la digitalización e implantación de nuevo software (ERP/CRM Dynamics 365, automatizaciones, optimización de flujos). Formación en ciberseguridad."
+        role: "Técnico Administrador de Sistemas",
+        company: "Norsol - Energía Solar",
+        description: "Gestión integral de infraestructura IT corporativa: administración de Active Directory, Microsoft 365 y políticas de seguridad. Participación clave en la migración e implementación de Microsoft Dynamics 365 (ERP/CRM), desarrollando automatizaciones con Power Automate para optimizar procesos empresariales. Responsable de formación en ciberseguridad y concienciación del personal.",
+        link: "https://norsol.es"
     },
     {
         period: "2020 - 2021",
         role: "Servicio Técnico a Domicilio",
         company: "Freelance / Autónomo",
-        description: "Soporte técnico de ordenadores a domicilio durante la pandemia. Diagnóstico de fallos de hardware, formateos, puestas a punto, instalación de software y optimización de equipos."
+        description: "Soporte técnico especializado a domicilio durante la pandemia COVID-19. Diagnóstico y resolución de fallos hardware/software, formateos y reinstalaciones de sistemas operativos, configuración de redes domésticas, instalación de software empresarial y optimización de rendimiento de equipos."
     }
 ];
 

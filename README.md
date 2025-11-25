@@ -1,16 +1,76 @@
-# React + Vite
+# Portfolio Xenlor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwind-css&logoColor=white)
 
-Currently, two official plugins are available:
+Portafolio personal de **Esteban (xenlor)**, SysAdmin y especialista en Ciberseguridad. Este proyecto muestra mi experiencia, habilidades técnicas y proyectos destacados en un entorno web moderno y dinámico.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Descripción
 
-## React Compiler
+Este portafolio está construido con tecnologías web modernas para ofrecer una experiencia de usuario fluida y atractiva. Diseñado para destacar tanto mis habilidades en infraestructura y seguridad como mi capacidad para desarrollar soluciones web.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> "Desde Chile hasta España, mi carrera se define por la curiosidad. No solo administro sistemas; los estudio, los protejo y los optimizo."
 
-## Expanding the ESLint configuration
+## ✨ Características
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-   **Diseño Responsivo**: Adaptable a dispositivos móviles, tablets y escritorio.
+-   **Modo Oscuro/Claro**: Soporte nativo para temas visuales.
+-   **Animaciones Fluidas**: Integración de Framer Motion para transiciones suaves.
+-   **Carrusel Infinito**: Componente personalizado para mostrar el stack tecnológico.
+-   **UI Moderna**: Estilizado con TailwindCSS y componentes visuales atractivos.
+
+## 🛠️ Stack Tecnológico
+
+-   **Frontend**: [React](https://react.dev/)
+-   **Build Tool**: [Vite](https://vitejs.dev/)
+-   **Estilos**: [TailwindCSS](https://tailwindcss.com/)
+-   **Iconos**: [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
+-   **Animaciones**: [Framer Motion](https://www.framer.com/motion/)
+
+## 📦 Instalación y Uso
+
+Sigue estos pasos para ejecutar el proyecto localmente:
+
+1.  **Clonar el repositorio**:
+    ```bash
+    git clone https://github.com/xenlor/portfolio-xenlor.git
+    cd portfolio-xenlor
+    ```
+
+2.  **Instalar dependencias**:
+    ```bash
+    npm install
+    ```
+
+3.  **Iniciar servidor de desarrollo**:
+    ```bash
+    npm run dev
+    ```
+
+4.  **Construir para producción**:
+    ```bash
+    npm run build
+    ```
+
+## 📂 Estructura del Proyecto
+
+```
+src/
+├── components/     # Componentes reutilizables (UI, Layout, etc.)
+├── data/          # Datos estáticos (proyectos, experiencia, perfil)
+├── App.jsx        # Componente principal
+├── main.jsx       # Punto de entrada
+└── index.css      # Estilos globales y configuración de Tailwind
+```
+
+## 📬 Contacto
+
+-   **Email**: contacto@xenlor.dev
+-   **GitHub**: [xenlor](https://github.com/xenlor)
+-   **LinkedIn**: [Esteban Castillo Loren](https://www.linkedin.com/in/esteban-castillo-loren-595652303/)
+
+---
+
+Desarrollado con ❤️ por [xenlor](https://github.com/xenlor)

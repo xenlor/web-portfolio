@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Eliminamos el background-color fijo del body para que 
+   el componente App.jsx controle el color (blanco o negro) */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* --- EVITAR SELECCIÓN DE TEXTO --- */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Estándar (Chrome, Opera, etc.) */
+}

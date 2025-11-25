@@ -8,6 +8,15 @@ const TechCarousel = () => {
     const positionRef = useRef(0); // Para acumular decimales y evitar redondeo del DOM
     const timeoutRef = useRef(null); // Para manejar el timer de reanudación
 
+    // Refs para física de inercia
+    const touchStartXRef = useRef(0); // Para detectar swipe
+    const touchStartYRef = useRef(0); // Para detectar scroll vertical
+    const touchStartScrollRef = useRef(0); // Posición inicial del scroll
+    const lastTouchXRef = useRef(0); // Para calcular velocidad
+    const lastTouchTimeRef = useRef(0); // Para calcular velocidad
+    const velocityRef = useRef(0); // Velocidad actual de inercia
+    const isDraggingRef = useRef(false); // Para saber si estamos arrastrando
+
     // Duplicamos el stack varias veces para asegurar un scroll infinito fluido
     // (Cuadruple duplicación para tener suficiente contenido para el loop)
     const extendedStack = [...stack, ...stack, ...stack, ...stack];
@@ -17,7 +26,7 @@ const TechCarousel = () => {
         if (!scrollContainer) return;
 
         let animationFrameId;
-        const scrollSpeed = 0.2; // Velocidad suave y constante (ahora sí funciona gracias al ref)
+        const scrollSpeed = 0.2; // Velocidad suave y constante
 
         // Inicializamos el scroll en el segundo set para tener margen a la izquierda
         // Solo si está en 0 (inicio)
@@ -31,24 +40,37 @@ const TechCarousel = () => {
         }
 
         const scroll = () => {
-            if (!isPaused && scrollContainer) {
-                // Sumamos al ref de alta precisión
-                positionRef.current += scrollSpeed;
+            if (scrollContainer && !isDraggingRef.current) {
+                let shouldUpdateDOM = false;
 
-                // Aplicamos al DOM (el navegador redondeará visualmente, pero nosotros mantenemos el float)
-                scrollContainer.scrollLeft = positionRef.current;
-
-                // Recalculamos por si cambia el tamaño
-                const currentSetWidth = scrollContainer.scrollWidth / 4;
-
-                // Lógica de loop infinito bidireccional:
-                if (currentSetWidth > 0 && positionRef.current >= currentSetWidth * 2) {
-                    positionRef.current -= currentSetWidth;
-                    scrollContainer.scrollLeft = positionRef.current;
+                // Si hay velocidad de inercia, la aplicamos
+                if (Math.abs(velocityRef.current) > 0.1) {
+                    positionRef.current += velocityRef.current;
+                    velocityRef.current *= 0.95; // Fricción (desaceleración)
+                    shouldUpdateDOM = true;
+                } else if (!isPaused) {
+                    // Si no hay inercia y NO está pausado, aplicamos auto-scroll
+                    positionRef.current += scrollSpeed;
+                    velocityRef.current = 0;
+                    shouldUpdateDOM = true;
                 }
-                else if (currentSetWidth > 0 && positionRef.current <= 0) {
-                    positionRef.current += currentSetWidth;
+
+                if (shouldUpdateDOM) {
+                    // Aplicamos al DOM (el navegador redondeará visualmente, pero nosotros mantenemos el float)
                     scrollContainer.scrollLeft = positionRef.current;
+
+                    // Recalculamos por si cambia el tamaño
+                    const currentSetWidth = scrollContainer.scrollWidth / 4;
+
+                    // Lógica de loop infinito bidireccional:
+                    if (currentSetWidth > 0 && positionRef.current >= currentSetWidth * 2) {
+                        positionRef.current -= currentSetWidth;
+                        scrollContainer.scrollLeft = positionRef.current;
+                    }
+                    else if (currentSetWidth > 0 && positionRef.current <= 0) {
+                        positionRef.current += currentSetWidth;
+                        scrollContainer.scrollLeft = positionRef.current;
+                    }
                 }
             }
             animationFrameId = requestAnimationFrame(scroll);
@@ -59,10 +81,67 @@ const TechCarousel = () => {
         return () => cancelAnimationFrame(animationFrameId);
     }, [isPaused]);
 
+    // Touch handlers para swipe en móvil con inercia
+    const handleTouchStart = (e) => {
+        touchStartXRef.current = e.touches[0].clientX;
+        touchStartYRef.current = e.touches[0].clientY;
+        lastTouchXRef.current = e.touches[0].clientX;
+        lastTouchTimeRef.current = Date.now();
+        touchStartScrollRef.current = scrollRef.current.scrollLeft;
+        velocityRef.current = 0;
+        isDraggingRef.current = true;
+        setIsPaused(true);
+
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
+        }
+    };
+
+    const handleTouchMove = (e) => {
+        if (!scrollRef.current) return;
+        const touchX = e.touches[0].clientX;
+        const touchY = e.touches[0].clientY;
+        const now = Date.now();
+
+        const diffX = touchStartXRef.current - touchX;
+        const diffY = touchStartYRef.current - touchY;
+
+        // Si el movimiento es más horizontal que vertical, prevenimos el scroll de la página
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            if (e.cancelable) {
+                e.preventDefault();
+            }
+            const newScroll = touchStartScrollRef.current + diffX;
+            scrollRef.current.scrollLeft = newScroll;
+            positionRef.current = newScroll;
+
+            // Calcular velocidad instantánea
+            const dt = now - lastTouchTimeRef.current;
+            if (dt > 0) {
+                const dx = lastTouchXRef.current - touchX;
+                velocityRef.current = dx / dt * 16; // Normalizar a frames (aprox 16ms)
+            }
+            lastTouchXRef.current = touchX;
+            lastTouchTimeRef.current = now;
+        }
+    };
+
+    const handleTouchEnd = () => {
+        isDraggingRef.current = false;
+
+        // Reanudar auto-scroll después de que termine la inercia (o un tiempo fijo)
+        timeoutRef.current = setTimeout(() => {
+            setIsPaused(false);
+            velocityRef.current = 0; // Resetear velocidad al volver a auto-scroll
+        }, 2000);
+    };
+
     const scrollManual = (direction) => {
         const scrollContainer = scrollRef.current;
         if (scrollContainer) {
             setIsPaused(true);
+            velocityRef.current = 0; // Detener inercia inmediatamente
 
             // Limpiamos timeout anterior si existe para evitar race conditions
             if (timeoutRef.current) {
@@ -113,9 +192,12 @@ const TechCarousel = () => {
             {/* Contenedor Scroll */}
             <div
                 ref={scrollRef}
-                className="w-full overflow-x-hidden flex items-center py-20 [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%_-_128px),transparent_100%)]"
+                className="w-full overflow-x-hidden flex items-center py-20 touch-pan-y [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%_-_128px),transparent_100%)]"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
             >
                 <ul className="flex items-center gap-0 w-fit">
                     {extendedStack.map((tech, index) => (

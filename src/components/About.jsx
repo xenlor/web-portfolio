@@ -4,6 +4,7 @@ import { Server, Terminal, Layers, GraduationCap } from 'lucide-react';
 import RevealSection from './ui/RevealSection';
 import SectionHeading from './ui/SectionHeading';
 import { stack, experience, education } from '../data/data';
+import TechCarousel from './ui/TechCarousel';
 
 // Constante para estilo glassmorphism por defecto
 const glassClass = "bg-white/60 dark:bg-gray-900/30 backdrop-blur-sm border border-gray-200 dark:border-gray-800/50";
@@ -48,28 +49,13 @@ const About = () => (
                 </p>
             </motion.div>
 
+
             {/* STACK TECNOLÓGICO */}
-            <div>
+            <div className="w-full">
                 <h3 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white flex items-center gap-3">
                     <Terminal size={24} className="text-purple-600 dark:text-purple-400" /> Stack Tecnológico
                 </h3>
-                <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                >
-                    {stack.map((tech) => (
-                        <motion.div
-                            key={tech}
-                            variants={itemVariants}
-                            className="px-4 py-4 rounded-xl text-center hover:border-purple-500/50 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all group cursor-default shadow-sm hover:shadow-purple-500/20 hover:-translate-y-1 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800/50"
-                        >
-                            <span className="text-gray-600 dark:text-gray-300 font-medium text-sm group-hover:text-purple-600 dark:group-hover:text-white transition-colors">{tech}</span>
-                        </motion.div>
-                    ))}
-                </motion.div>
+                <TechCarousel />
             </div>
 
             {/* EXPERIENCIA */}

@@ -4,12 +4,13 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class', // <--- ¡ESTA LÍNEA ES LA CLAVE!
+  darkMode: 'class',
   theme: {
     extend: {
       animation: {
         'gradient-x': 'gradient-x 15s ease infinite',
         'float': 'float 6s ease-in-out infinite',
+        'scroll': 'scroll 40s linear infinite',
       },
       keyframes: {
         'gradient-x': {
@@ -25,6 +26,10 @@ export default {
         'float': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-20px)' },
+        },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         }
       },
     },

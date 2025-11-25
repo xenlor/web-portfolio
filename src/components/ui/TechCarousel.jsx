@@ -6,6 +6,7 @@ const TechCarousel = () => {
     const scrollRef = useRef(null);
     const [isPaused, setIsPaused] = useState(false);
     const positionRef = useRef(0); // Para acumular decimales y evitar redondeo del DOM
+    const timeoutRef = useRef(null); // Para manejar el timer de reanudación
 
     // Duplicamos el stack varias veces para asegurar un scroll infinito fluido
     // (Cuadruple duplicación para tener suficiente contenido para el loop)
@@ -59,22 +60,38 @@ const TechCarousel = () => {
     }, [isPaused]);
 
     const scrollManual = (direction) => {
-        if (scrollRef.current) {
+        const scrollContainer = scrollRef.current;
+        if (scrollContainer) {
             setIsPaused(true);
 
+            // Limpiamos timeout anterior si existe para evitar race conditions
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+
+            const singleSetWidth = scrollContainer.scrollWidth / 4;
+            const currentScroll = scrollContainer.scrollLeft;
+
+            // Lógica de "Teleport" para mantenernos en la zona segura central
+            // Si estamos muy a la derecha, saltamos un set atrás
+            if (direction === 'right' && currentScroll >= 2 * singleSetWidth) {
+                scrollContainer.scrollLeft -= singleSetWidth;
+            }
+            // Si estamos muy a la izquierda, saltamos un set adelante
+            else if (direction === 'left' && currentScroll <= singleSetWidth) {
+                scrollContainer.scrollLeft += singleSetWidth;
+            }
+
             const scrollAmount = 300;
-            scrollRef.current.scrollBy({
+            scrollContainer.scrollBy({
                 left: direction === 'left' ? -scrollAmount : scrollAmount,
                 behavior: 'smooth'
             });
 
-            // Actualizamos nuestro ref de posición al destino aproximado
-            // Nota: scrollBy es animado, así que positionRef se desincronizará momentáneamente.
-            // Al reactivar el loop, deberíamos resincronizar.
-
-            setTimeout(() => {
-                // Al volver, leemos la posición real del DOM para seguir desde ahí
+            // Reiniciamos el loop después de la interacción
+            timeoutRef.current = setTimeout(() => {
                 if (scrollRef.current) {
+                    // Sincronizamos la posición exacta donde quedó el scroll manual
                     positionRef.current = scrollRef.current.scrollLeft;
                 }
                 setIsPaused(false);

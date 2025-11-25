@@ -4,6 +4,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+  /* Offset para el header fijo */
 }
 
 /* Eliminamos el background-color fijo del body para que 

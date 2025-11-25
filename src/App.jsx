@@ -4,6 +4,7 @@ import { Moon, Sun, Menu, X, ArrowUp, Rocket, Terminal } from 'lucide-react';
 import BackgroundWrapper from './components/ui/BackgroundWrapper';
 import NavItem from './components/ui/NavItem';
 import SpaceInvaders from './components/SpaceInvaders';
+import TerminalComponent from './components/Terminal';
 import Hero from './components/Hero';
 import About from './components/About';
 import ProjectsList from './components/ProjectsList';
@@ -15,6 +16,7 @@ export default function App() {
   const [isDark, setIsDark] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [gameActive, setGameActive] = useState(false); // Estado para el juego
+  const [terminalActive, setTerminalActive] = useState(false); // Estado para el terminal
 
   const navItems = [
     { id: 'inicio', label: 'Inicio' },
@@ -67,9 +69,9 @@ export default function App() {
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 100,
-        behavior: 'smooth'
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
       });
     }
     setActiveSection(id);
@@ -122,6 +124,11 @@ export default function App() {
         {gameActive && <SpaceInvaders onClose={() => setGameActive(false)} />}
       </AnimatePresence>
 
+      {/* --- TERMINAL OVERLAY --- */}
+      <AnimatePresence>
+        {terminalActive && <TerminalComponent onClose={() => setTerminalActive(false)} />}
+      </AnimatePresence>
+
       {/* Header Flotante */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 rounded-2xl border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 transition-colors duration-500 bg-white/70 dark:bg-[#050505]/70 backdrop-blur-xl">
         <div className="px-6 h-16 flex items-center justify-between">
@@ -147,6 +154,16 @@ export default function App() {
                 />
               ))}
             </nav>
+
+            {/* Botón Terminal */}
+            <button
+              onClick={() => setTerminalActive(true)}
+              className="hidden md:block p-2 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-all"
+              aria-label="Open Terminal"
+              title="Open Terminal"
+            >
+              <Terminal size={20} />
+            </button>
 
             {/* Botón Tema */}
             <button

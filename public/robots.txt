@@ -1,0 +1,10 @@
+# Sitemap
+Sitemap: https://xenlor.dev/sitemap.xml
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin or private paths (if any)
+# User-agent: *
+# Disallow: /admin/

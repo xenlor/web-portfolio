@@ -34,7 +34,7 @@ export const projects = [
         category: "Ciberseguridad & IA",
         description: "Sistema de detección de intrusiones para IoT desplegado en Raspberry Pi. Utiliza un modelo Random Forest entrenado con el dataset CICIoT2023 para clasificar tráfico en tiempo real, con un dashboard en Grafana para visualización de amenazas.",
         tech: ["Python", "Scikit-learn", "Raspberry Pi", "Grafana", "InfluxDB", "Suricata"],
-        link: "https://github.com/xenlor/ids-iot-ml"
+        link: "https://github.com/xenlor/tfg-ceti"
     },
     {
         id: 2,

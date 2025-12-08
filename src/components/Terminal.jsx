@@ -30,12 +30,12 @@ const Terminal = ({ onClose }) => {
     const executeCommand = (cmd) => {
         const trimmed = cmd.trim().toLowerCase();
 
-        // Add command to history
+        // Agregar comando al historial
         addToHistory(`xenlor@dev:~$ ${cmd}`, 'command');
 
         if (!trimmed) return;
 
-        // Save to command history for navigation
+        // Guardar en historial de comandos para navegación
         setCommandHistory(prev => [...prev, cmd]);
         setHistoryIndex(-1);
 
@@ -174,7 +174,7 @@ const Terminal = ({ onClose }) => {
                 className="w-full max-w-4xl h-[600px] bg-black border-2 border-green-500/30 rounded-lg shadow-[0_0_50px_rgba(34,197,94,0.3)] overflow-hidden flex flex-col font-mono"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Header */}
+                {/* Cabecera */}
                 <div className="bg-green-950/30 border-b border-green-500/30 px-4 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-2 text-green-400">
                         <TerminalIcon size={18} />
@@ -189,7 +189,7 @@ const Terminal = ({ onClose }) => {
                     </button>
                 </div>
 
-                {/* Terminal Output */}
+                {/* Salida de Terminal */}
                 <div className="flex-1 overflow-y-auto p-4 text-sm bg-black/50">
                     {history.map((entry, idx) => (
                         <div
@@ -206,7 +206,7 @@ const Terminal = ({ onClose }) => {
                     <div ref={historyEndRef} />
                 </div>
 
-                {/* Input */}
+                {/* Entrada */}
                 <div className="border-t border-green-500/30 p-4 flex items-center gap-2 bg-black/50">
                     <span className="text-green-400 font-bold select-none">xenlor@dev:~$</span>
                     <input

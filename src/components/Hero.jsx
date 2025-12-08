@@ -102,7 +102,7 @@ const Hero = ({ scrollToSection }) => (
 
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Indicador de Scroll */}
         <motion.div
             className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-400 dark:text-gray-500 z-10"
             animate={{ y: [0, 10, 0] }}

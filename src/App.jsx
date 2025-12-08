@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, Menu, X, ArrowUp, Rocket, Terminal } from 'lucide-react';
+import { Moon, Sun, Menu, X, ArrowUp, Rocket, Terminal, Zap } from 'lucide-react';
+import { usePerformance } from './context/PerformanceContext';
 import BackgroundWrapper from './components/ui/BackgroundWrapper';
 import NavItem from './components/ui/NavItem';
 import SpaceInvaders from './components/SpaceInvaders';
@@ -11,6 +12,7 @@ import ProjectsList from './components/ProjectsList';
 import Contact from './components/Contact';
 
 export default function App() {
+  const { isPerformanceMode, setIsPerformanceMode } = usePerformance();
   const [activeSection, setActiveSection] = useState('inicio');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
@@ -43,7 +45,7 @@ export default function App() {
     }
   }, [isDark]);
 
-  // --- KONAMI CODE LOGIC ---
+  // --- LÓGICA CÓDIGO KONAMI ---
   useEffect(() => {
     const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
     let cursor = 0;
@@ -117,14 +119,14 @@ export default function App() {
     <div className="min-h-screen relative font-sans transition-colors duration-500 bg-gray-50 dark:bg-[#050505] text-gray-900 dark:text-gray-200 selection:bg-purple-500/30">
 
       {/* --- FONDO GLOBAL --- */}
-      <BackgroundWrapper />
+      <BackgroundWrapper performanceMode={isPerformanceMode} />
 
-      {/* --- EASTER EGG OVERLAY --- */}
+      {/* --- SUPERPOSICIÓN EASTER EGG --- */}
       <AnimatePresence>
-        {gameActive && <SpaceInvaders onClose={() => setGameActive(false)} />}
+        {gameActive && !isPerformanceMode && <SpaceInvaders onClose={() => setGameActive(false)} />}
       </AnimatePresence>
 
-      {/* --- TERMINAL OVERLAY --- */}
+      {/* --- SUPERPOSICIÓN TERMINAL --- */}
       <AnimatePresence>
         {terminalActive && <TerminalComponent onClose={() => setTerminalActive(false)} />}
       </AnimatePresence>
@@ -174,6 +176,19 @@ export default function App() {
               {isDark ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-purple-600" />}
             </button>
 
+            {/* Botón Performance */}
+            <button
+              onClick={() => setIsPerformanceMode(!isPerformanceMode)}
+              className={`p-2 rounded-lg border transition-all ${isPerformanceMode
+                ? 'bg-green-100 dark:bg-green-500/20 border-green-200 dark:border-green-500/30 text-green-600 dark:text-green-400'
+                : 'bg-gray-100 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10'
+                }`}
+              aria-label="Toggle Performance Mode"
+              title={isPerformanceMode ? "Modo Rendimiento: ACTIVADO" : "Modo Rendimiento: DESACTIVADO"}
+            >
+              <Zap size={20} className={isPerformanceMode ? "fill-current" : ""} />
+            </button>
+
             {/* Toggle Menú Móvil */}
             <button
               className="md:hidden z-50 relative p-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white bg-gray-100 dark:bg-white/5 rounded-lg border border-gray-200 dark:border-white/10"
@@ -219,7 +234,7 @@ export default function App() {
         <Contact />
       </main>
 
-      {/* Footer */}
+      {/* Pie de página */}
       <footer className="border-t border-gray-200 dark:border-white/5 py-12 text-center relative z-10 transition-colors duration-500 bg-white/80 dark:bg-[#020202]/80 backdrop-blur-md">
         <div className="flex justify-center items-center gap-3 mb-6 text-gray-500">
           <div className="p-2 bg-gray-100 dark:bg-white/5 rounded-full animate-pulse">
@@ -229,11 +244,12 @@ export default function App() {
         </div>
         <p className="text-gray-500 text-sm leading-loose flex items-center justify-center flex-col md:flex-row gap-1">
           <span>© {new Date().getFullYear()} Esteban Castillo Loren (xenlor).</span>
-          {/* --- ROCKET EASTER EGG --- */}
+          {/* --- EASTER EGG COHETE --- */}
           <button
-            onClick={() => setGameActive(true)}
-            className="opacity-20 hover:opacity-100 transition-opacity text-purple-500 mx-2"
-            title="Protocolo de Seguridad"
+            onClick={() => !isPerformanceMode && setGameActive(true)}
+            className={`opacity-20 hover:opacity-100 transition-opacity text-purple-500 mx-2 ${isPerformanceMode ? 'cursor-not-allowed opacity-10 hover:opacity-10' : ''}`}
+            title={isPerformanceMode ? "No disponible en modo rendimiento" : "Protocolo de Seguridad"}
+            disabled={isPerformanceMode}
           >
             <Rocket size={14} />
           </button>
@@ -242,7 +258,7 @@ export default function App() {
         </p>
       </footer>
 
-      {/* --- BOTÓN IR ARRIBA (BACK TO TOP) --- */}
+      {/* --- BOTÓN IR ARRIBA --- */}
       <AnimatePresence>
         {showScrollTop && (
           <motion.button

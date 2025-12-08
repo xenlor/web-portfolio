@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { stack } from '../../data/data';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { usePerformance } from '../../context/PerformanceContext';
 
 const TechCarousel = () => {
+    const { isPerformanceMode } = usePerformance();
     const scrollRef = useRef(null);
     const [isPaused, setIsPaused] = useState(false);
     const positionRef = useRef(0); // Para acumular decimales y evitar redondeo del DOM
@@ -48,8 +50,8 @@ const TechCarousel = () => {
                     positionRef.current += velocityRef.current;
                     velocityRef.current *= 0.95; // Fricción (desaceleración)
                     shouldUpdateDOM = true;
-                } else if (!isPaused) {
-                    // Si no hay inercia y NO está pausado, aplicamos auto-scroll
+                } else if (!isPaused && !isPerformanceMode) {
+                    // Si no hay inercia y NO está pausado y NO está en modo rendimiento, aplicamos auto-scroll
                     positionRef.current += scrollSpeed;
                     velocityRef.current = 0;
                     shouldUpdateDOM = true;

@@ -11,14 +11,13 @@ Portafolio personal de **Esteban (xenlor)**, SysAdmin y especialista en Ciberseg
 
 Este portafolio está construido con tecnologías web modernas para ofrecer una experiencia de usuario fluida y atractiva. Diseñado para destacar tanto mis habilidades en infraestructura y seguridad como mi capacidad para desarrollar soluciones web.
 
-> "Desde Chile hasta España, mi carrera se define por la curiosidad. No solo administro sistemas; los estudio, los protejo y los optimizo."
-
 ## ✨ Características
 
 -   **Diseño Responsivo**: Adaptable a dispositivos móviles, tablets y escritorio.
 -   **Modo Oscuro/Claro**: Soporte nativo para temas visuales.
 -   **Animaciones Fluidas**: Integración de Framer Motion para transiciones suaves.
 -   **Carrusel Infinito**: Componente personalizado para mostrar el stack tecnológico.
+-   **Modo Rendimiento**: Optimización automática/manual para dispositivos con recursos limitados.
 -   **UI Moderna**: Estilizado con TailwindCSS y componentes visuales atractivos.
 
 ## 🛠️ Stack Tecnológico

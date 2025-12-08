@@ -6,6 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+build_log*.txt
+*.rar
+*.zip
+
 
 node_modules
 dist

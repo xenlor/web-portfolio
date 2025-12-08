@@ -65,7 +65,7 @@ const playSound = (type) => {
 
 const SpaceInvaders = ({ onClose }) => {
     const canvasRef = useRef(null);
-    const [gameState, setGameState] = useState('start'); // start, playing, gameover, victory
+    const [gameState, setGameState] = useState('start'); // inicio, jugando, gameover, victoria
     const [score, setScore] = useState(0);
     const [level, setLevel] = useState(1);
 
@@ -95,7 +95,7 @@ const SpaceInvaders = ({ onClose }) => {
 
         const g = gameRef.current;
 
-        // Reset Player
+        // Reiniciar Jugador
         g.player.x = canvas.width / 2 - 20;
         g.player.y = canvas.height - 40;
         g.player.dx = 0;
@@ -104,7 +104,7 @@ const SpaceInvaders = ({ onClose }) => {
         g.alienDirection = 1;
         g.alienSpeed = 1 + (lvl * 0.2); // Más rápido cada nivel
 
-        // Create Stars Background
+        // Crear Fondo de Estrellas
         if (g.stars.length === 0) {
             for (let i = 0; i < 50; i++) {
                 g.stars.push({
@@ -116,7 +116,7 @@ const SpaceInvaders = ({ onClose }) => {
             }
         }
 
-        // Create Aliens Grid
+        // Crear Cuadrícula de Aliens
         g.aliens = [];
         const rows = 4;
         const cols = 8;
@@ -162,7 +162,7 @@ const SpaceInvaders = ({ onClose }) => {
                 width: 4,
                 height: 10,
                 speed: 7,
-                color: '#a855f7' // Purple laser
+                color: '#a855f7' // Láser morado
             });
         }
     }, [gameState]);
@@ -173,7 +173,7 @@ const SpaceInvaders = ({ onClose }) => {
         }
     }, []);
 
-    // Touch Controls for Mobile
+    // Controles Táctiles para Móvil
     const handleTouchStart = (dir) => {
         if (dir === 'left') gameRef.current.player.dx = -gameRef.current.player.speed;
         if (dir === 'right') gameRef.current.player.dx = gameRef.current.player.speed;
@@ -220,11 +220,11 @@ const SpaceInvaders = ({ onClose }) => {
             if (!g.lastTime) g.lastTime = time;
             g.lastTime = time;
 
-            // Clear Canvas
+            // Limpiamos Canvas
             ctx.fillStyle = '#050505';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // --- Update and Draw Stars ---
+            // --- Actualizar y Dibujar Estrellas ---
             ctx.fillStyle = '#ffffff';
             g.stars.forEach(star => {
                 star.y += star.speed;
@@ -237,12 +237,12 @@ const SpaceInvaders = ({ onClose }) => {
                 ctx.globalAlpha = 1.0;
             });
 
-            // Update Player
+            // Actualizar Jugador
             g.player.x += g.player.dx;
             if (g.player.x < 0) g.player.x = 0;
             if (g.player.x + g.player.width > canvas.width) g.player.x = canvas.width - g.player.width;
 
-            // Draw Player
+            // Dibujar Jugador
             ctx.fillStyle = '#a855f7';
             ctx.beginPath();
             ctx.moveTo(g.player.x + g.player.width / 2, g.player.y);
@@ -250,7 +250,7 @@ const SpaceInvaders = ({ onClose }) => {
             ctx.lineTo(g.player.x, g.player.y + g.player.height);
             ctx.fill();
 
-            // Update Bullets
+            // Actualizar Proyectiles
             g.bullets.forEach((b, i) => {
                 b.y -= b.speed;
                 if (b.y < 0) g.bullets.splice(i, 1);
@@ -258,7 +258,7 @@ const SpaceInvaders = ({ onClose }) => {
                 ctx.fillRect(b.x - b.width / 2, b.y, b.width, b.height);
             });
 
-            // Update Aliens
+            // Actualizar Aliens
             let edgeReached = false;
             let lowestAlienY = 0;
 
@@ -268,12 +268,12 @@ const SpaceInvaders = ({ onClose }) => {
                 alien.x += g.alienSpeed * g.alienDirection;
                 lowestAlienY = Math.max(lowestAlienY, alien.y + alien.height);
 
-                // Check edges
+                // Comprobar bordes
                 if (alien.x + alien.width > canvas.width - 10 || alien.x < 10) {
                     edgeReached = true;
                 }
 
-                // Draw Alien
+                // Dibujar Alien
                 ctx.fillStyle = alien.color;
                 ctx.fillRect(alien.x, alien.y, alien.width, alien.height);
                 // Eyes
@@ -281,7 +281,7 @@ const SpaceInvaders = ({ onClose }) => {
                 ctx.fillRect(alien.x + 5, alien.y + 5, 5, 5);
                 ctx.fillRect(alien.x + alien.width - 10, alien.y + 5, 5, 5);
 
-                // Collision with Player (Game Over)
+                // Colisión con Jugador (Game Over)
                 if (
                     g.player.x < alien.x + alien.width &&
                     g.player.x + g.player.width > alien.x &&
@@ -307,7 +307,7 @@ const SpaceInvaders = ({ onClose }) => {
                 g.alienSpeed += 0.1;
             }
 
-            // Collision Detection (Bullets vs Aliens)
+            // Detección de Colisiones (Proyectiles vs Aliens)
             g.bullets.forEach((b, bIdx) => {
                 g.aliens.forEach((a, aIdx) => {
                     if (a.alive &&
@@ -315,13 +315,13 @@ const SpaceInvaders = ({ onClose }) => {
                         b.x < a.x + a.width &&
                         b.y > a.y &&
                         b.y < a.y + a.height) {
-                        // Hit!
+                        // ¡Impacto!
                         playSound('explosion');
                         a.alive = false;
                         g.bullets.splice(bIdx, 1);
                         setScore(prev => prev + 100);
 
-                        // Particles
+                        // Partículas
                         for (let i = 0; i < 5; i++) {
                             g.particles.push({
                                 x: a.x + a.width / 2,
@@ -336,14 +336,14 @@ const SpaceInvaders = ({ onClose }) => {
                 });
             });
 
-            // Win Condition Logic
+            // Lógica de Victoria
             const aliveAliens = g.aliens.filter(a => a.alive).length;
             if (aliveAliens === 0 && g.aliens.length > 0) {
                 playSound('victory');
                 setGameState('victory');
             }
 
-            // Particles logic
+            // Lógica de partículas
             g.particles.forEach((p, i) => {
                 p.x += p.vx;
                 p.y += p.vy;
@@ -365,7 +365,7 @@ const SpaceInvaders = ({ onClose }) => {
 
     return (
         <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center">
-            {/* Header UI */}
+            {/* Interfaz de Cabecera */}
             <div className="absolute top-4 left-0 right-0 px-6 flex justify-between items-center text-white">
                 <div className="font-mono text-xl flex gap-6">
                     <span>SCORE: <span className="text-purple-400">{score}</span></span>
@@ -374,7 +374,7 @@ const SpaceInvaders = ({ onClose }) => {
                 <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors"><XCircle size={32} /></button>
             </div>
 
-            {/* Game Canvas */}
+            {/* Canvas del Juego */}
             <div className="relative rounded-xl overflow-hidden border-2 border-purple-500/30 shadow-[0_0_50px_rgba(168,85,247,0.2)]">
                 <canvas ref={canvasRef} className="bg-[#050505] max-w-full max-h-[70vh] touch-none" />
 
@@ -421,7 +421,7 @@ const SpaceInvaders = ({ onClose }) => {
                 )}
             </div>
 
-            {/* Mobile Controls */}
+            {/* Controles Móviles */}
             {gameState === 'playing' && (
                 <div className="md:hidden w-full max-w-[800px] mt-6 flex justify-between px-8 gap-4">
                     <div className="flex gap-4">
@@ -441,7 +441,7 @@ const SpaceInvaders = ({ onClose }) => {
                 </div>
             )}
 
-            {/* Desktop Hint */}
+            {/* Pista para Escritorio */}
             <div className="hidden md:block mt-4 text-gray-500 font-mono text-sm">
                 [←][→] Move &nbsp; [SPACE] Shoot
             </div>

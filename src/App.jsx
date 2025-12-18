@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Menu, X, ArrowUp, Rocket, Terminal, Zap } from 'lucide-react';
+import Snowfall from 'react-snowfall';
 import { usePerformance } from './context/PerformanceContext';
 import BackgroundWrapper from './components/ui/BackgroundWrapper';
 import NavItem from './components/ui/NavItem';
@@ -117,6 +118,24 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative font-sans transition-colors duration-500 bg-gray-50 dark:bg-[#050505] text-gray-900 dark:text-gray-200 selection:bg-purple-500/30">
+
+      {/* --- EFECTO DE NIEVE --- */}
+      {!isPerformanceMode && (
+        <Snowfall
+          color="#dee2e6"
+          snowflakeCount={200}
+          speed={[1.5, 3.0]}
+          wind={[-0.5, 1.0]}
+          radius={[0.5, 3.0]}
+          style={{
+            position: 'fixed',
+            width: '100vw',
+            height: '100vh',
+            zIndex: 9999,
+            pointerEvents: 'none'
+          }}
+        />
+      )}
 
       {/* --- FONDO GLOBAL --- */}
       <BackgroundWrapper performanceMode={isPerformanceMode} />

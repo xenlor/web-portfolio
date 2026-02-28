@@ -81,7 +81,7 @@ const TechCarousel = () => {
         animationFrameId = requestAnimationFrame(scroll);
 
         return () => cancelAnimationFrame(animationFrameId);
-    }, [isPaused]);
+    }, [isPaused, isPerformanceMode]);
 
     // Touch handlers para swipe en móvil con inercia
     const handleTouchStart = (e) => {
@@ -204,7 +204,7 @@ const TechCarousel = () => {
                 <ul className="flex items-center gap-0 w-fit">
                     {extendedStack.map((tech, index) => (
                         <li key={`${tech.name}-${index}`} className="flex flex-col items-center gap-3 group min-w-[140px] px-4 select-none relative">
-                            <div className="text-5xl md:text-6xl transition-all duration-300 group-hover:scale-110 filter grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 p-2 cursor-pointer">
+                            <div className="text-5xl md:text-6xl transition-all duration-300 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-50 group-hover:opacity-100 p-2 cursor-pointer">
                                 {tech.icon}
                             </div>
                             <span className="text-sm font-medium text-gray-500 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors whitespace-nowrap">

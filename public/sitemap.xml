@@ -3,7 +3,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://xenlor.dev/</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,7 +11,7 @@
   <!-- About Section -->
   <url>
     <loc>https://xenlor.dev/#sobre-mi</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -19,7 +19,7 @@
   <!-- Projects Section -->
   <url>
     <loc>https://xenlor.dev/#proyectos</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -27,7 +27,7 @@
   <!-- Contact Section -->
   <url>
     <loc>https://xenlor.dev/#contacto</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

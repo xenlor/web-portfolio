@@ -5,42 +5,85 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 120px;
-  /* Offset para el header fijo */
 }
 
-/* Eliminamos el background-color fijo del body para que 
-   el componente App.jsx controle el color (blanco o negro) */
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-
-  /* --- EVITAR SELECCIÓN DE TEXTO --- */
-  -webkit-user-select: none;
-  /* Safari */
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* IE/Edge */
-  user-select: none;
-  /* Estándar (Chrome, Opera, etc.) */
 }
 
+/* ─── Carrusel ──────────────────────────────── */
 @keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-25%);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
 }
 
-.animate-scroll {
-  animation: scroll 15s linear infinite;
+.animate-scroll { animation: scroll 15s linear infinite; }
+.group\/carousel:hover .animate-scroll { animation-play-state: paused; }
+
+/* ─── Aurora — 4 capas con movimiento diferente ── */
+@keyframes aurora-1 {
+  0%, 100% { transform: translate(0%, 0%)   scale(1);    opacity: 0.7; }
+  33%       { transform: translate(-8%, 6%)  scale(1.08); opacity: 0.9; }
+  66%       { transform: translate(5%, -4%)  scale(0.95); opacity: 0.6; }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: translate(0%, 0%)    scale(1);    opacity: 0.6; }
+  50%       { transform: translate(10%, -8%) scale(1.12); opacity: 0.85; }
+}
+@keyframes aurora-3 {
+  0%, 100% { transform: translate(0%, 0%)   scale(1);    opacity: 0.5; }
+  25%       { transform: translate(6%, 10%) scale(1.05); opacity: 0.75; }
+  75%       { transform: translate(-8%, -5%) scale(0.98); opacity: 0.45; }
+}
+@keyframes aurora-4 {
+  0%, 100% { transform: translate(0%, 0%)    scale(1);    opacity: 0.4; }
+  40%       { transform: translate(-12%, -6%) scale(1.1);  opacity: 0.65; }
+  80%       { transform: translate(8%, 10%)  scale(0.92); opacity: 0.35; }
 }
 
-.group\/carousel:hover .animate-scroll {
-  animation-play-state: paused;
+.aurora { will-change: transform; }
+.aurora-1 { animation: aurora-1 20s ease-in-out infinite; }
+.aurora-2 { animation: aurora-2 25s ease-in-out infinite 4s; }
+.aurora-3 { animation: aurora-3 28s ease-in-out infinite 8s; }
+.aurora-4 { animation: aurora-4 22s ease-in-out infinite 2s; }
+
+/* Colores de aurora */
+.aurora-purple { background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.35) 0%, transparent 70%); }
+.aurora-indigo  { background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.28) 0%, transparent 70%); }
+.aurora-violet  { background: radial-gradient(ellipse at center, rgba(167, 139, 250, 0.22) 0%, transparent 70%); }
+.aurora-blue    { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.18) 0%, transparent 70%); }
+
+/* En modo claro, las auroras son más suaves */
+:root:not(.dark) .aurora-purple { background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.22) 0%, transparent 70%); }
+:root:not(.dark) .aurora-indigo  { background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.18) 0%, transparent 70%); }
+:root:not(.dark) .aurora-violet  { background: radial-gradient(ellipse at center, rgba(167, 139, 250, 0.15) 0%, transparent 70%); }
+:root:not(.dark) .aurora-blue    { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.13) 0%, transparent 70%); }
+
+/* ─── Estrellas (campo de partículas Hero) ──── */
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%       { opacity: 0.7;  transform: scale(1.3); }
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: star-twinkle ease-in-out infinite;
+}
+
+/* ─── Móvil: sin animaciones pesadas ─────────── */
+@media (max-width: 767px) {
+  .aurora { animation: none !important; will-change: auto; }
+}
+
+/* ─── Respeto por prefers-reduced-motion ─────── */
+@media (prefers-reduced-motion: reduce) {
+  .aurora, .star, .animate-scroll {
+    animation: none !important;
+    will-change: auto;
+  }
 }

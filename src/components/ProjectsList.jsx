@@ -5,8 +5,7 @@ import RevealSection from './ui/RevealSection';
 import SectionHeading from './ui/SectionHeading';
 import { projects } from '../data/data';
 
-// Constante para estilo glassmorphism por defecto
-const glassClass = "bg-white/60 dark:bg-gray-900/30 backdrop-blur-sm border border-gray-200 dark:border-gray-800/50";
+const glassClass = "bg-white/85 dark:bg-white/[0.03] backdrop-blur-md border border-purple-200/60 dark:border-white/[0.08] shadow-sm dark:shadow-none";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -55,7 +54,7 @@ const ProjectsList = () => (
                     rel="noopener noreferrer"
                     variants={itemVariants}
                     whileHover={{ y: -10, scale: 1.02 }}
-                    className={`group block relative rounded-3xl overflow-hidden hover:border-purple-500/50 hover:shadow-[0_0_40px_rgba(147,51,234,0.15)] transition-all duration-500 ${glassClass}`}
+                    className={`group block relative rounded-3xl overflow-hidden hover:border-purple-500/40 dark:hover:border-purple-400/30 hover:shadow-[0_20px_60px_rgba(139,92,246,0.2)] dark:hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 ${glassClass}`}
                 >
                     {/* Gradient overlay on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 to-blue-600/0 group-hover:from-purple-600/5 group-hover:to-blue-600/5 transition-all duration-500" />

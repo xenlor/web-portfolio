@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Menu, X, ArrowUp, Rocket, Terminal, Zap } from 'lucide-react';
-import Snowfall from 'react-snowfall';
 import { usePerformance } from './context/PerformanceContext';
 import BackgroundWrapper from './components/ui/BackgroundWrapper';
 import NavItem from './components/ui/NavItem';
-import SpaceInvaders from './components/SpaceInvaders';
-import TerminalComponent from './components/Terminal';
 import Hero from './components/Hero';
 import About from './components/About';
 import ProjectsList from './components/ProjectsList';
 import Contact from './components/Contact';
+
+const SpaceInvaders = lazy(() => import('./components/SpaceInvaders'));
+const TerminalComponent = lazy(() => import('./components/Terminal'));
+
+const navItems = [
+  { id: 'inicio', label: 'Inicio' },
+  { id: 'sobre-mi', label: 'Sobre mí' },
+  { id: 'proyectos', label: 'Proyectos' },
+  { id: 'contacto', label: 'Contacto' },
+];
 
 export default function App() {
   const { isPerformanceMode, setIsPerformanceMode } = usePerformance();
@@ -18,15 +25,8 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [gameActive, setGameActive] = useState(false); // Estado para el juego
-  const [terminalActive, setTerminalActive] = useState(false); // Estado para el terminal
-
-  const navItems = [
-    { id: 'inicio', label: 'Inicio' },
-    { id: 'sobre-mi', label: 'Sobre mí' },
-    { id: 'proyectos', label: 'Proyectos' },
-    { id: 'contacto', label: 'Contacto' },
-  ];
+  const [gameActive, setGameActive] = useState(false);
+  const [terminalActive, setTerminalActive] = useState(false);
 
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -117,41 +117,27 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen relative font-sans transition-colors duration-500 bg-gray-50 dark:bg-[#050505] text-gray-900 dark:text-gray-200 selection:bg-purple-500/30">
-
-      {/* --- EFECTO DE NIEVE --- */}
-      {!isPerformanceMode && (
-        <Snowfall
-          color="#dee2e6"
-          snowflakeCount={200}
-          speed={[1.5, 3.0]}
-          wind={[-0.5, 1.0]}
-          radius={[0.5, 3.0]}
-          style={{
-            position: 'fixed',
-            width: '100vw',
-            height: '100vh',
-            zIndex: 9999,
-            pointerEvents: 'none'
-          }}
-        />
-      )}
+    <div className="min-h-screen relative font-sans transition-colors duration-500 bg-[#f5f3ff] dark:bg-[#06040f] text-gray-900 dark:text-gray-200 selection:bg-purple-500/30">
 
       {/* --- FONDO GLOBAL --- */}
       <BackgroundWrapper performanceMode={isPerformanceMode} />
 
       {/* --- SUPERPOSICIÓN EASTER EGG --- */}
-      <AnimatePresence>
-        {gameActive && !isPerformanceMode && <SpaceInvaders onClose={() => setGameActive(false)} />}
-      </AnimatePresence>
+      <Suspense fallback={null}>
+        <AnimatePresence>
+          {gameActive && !isPerformanceMode && <SpaceInvaders onClose={() => setGameActive(false)} />}
+        </AnimatePresence>
+      </Suspense>
 
       {/* --- SUPERPOSICIÓN TERMINAL --- */}
-      <AnimatePresence>
-        {terminalActive && <TerminalComponent onClose={() => setTerminalActive(false)} />}
-      </AnimatePresence>
+      <Suspense fallback={null}>
+        <AnimatePresence>
+          {terminalActive && <TerminalComponent onClose={() => setTerminalActive(false)} />}
+        </AnimatePresence>
+      </Suspense>
 
       {/* Header Flotante */}
-      <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 rounded-2xl border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 transition-colors duration-500 bg-white/70 dark:bg-[#050505]/70 backdrop-blur-xl">
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 rounded-2xl border border-purple-200/60 dark:border-white/10 shadow-lg shadow-purple-500/5 dark:shadow-black/20 transition-colors duration-500 bg-white/75 dark:bg-[#050505]/70 backdrop-blur-xl">
         <div className="px-6 h-16 flex items-center justify-between">
           <div
             className="font-bold text-xl tracking-tighter cursor-pointer flex items-center gap-2 text-gray-900 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors z-50 relative group"
@@ -254,7 +240,7 @@ export default function App() {
       </main>
 
       {/* Pie de página */}
-      <footer className="border-t border-gray-200 dark:border-white/5 py-12 text-center relative z-10 transition-colors duration-500 bg-white/80 dark:bg-[#020202]/80 backdrop-blur-md">
+      <footer className="border-t border-purple-200/50 dark:border-white/5 py-12 text-center relative z-10 transition-colors duration-500 bg-[#f5f3ff]/80 dark:bg-[#020202]/80 backdrop-blur-md">
         <div className="flex justify-center items-center gap-3 mb-6 text-gray-500">
           <div className="p-2 bg-gray-100 dark:bg-white/5 rounded-full animate-pulse">
             <Terminal size={16} className="text-green-600 dark:text-green-500" />

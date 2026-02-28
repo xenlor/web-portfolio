@@ -91,8 +91,7 @@ const Terminal = ({ onClose }) => {
                         addToHistory(`=== ${project.title} ===`, 'output');
                         addToHistory(`Description: ${project.description}`, 'output');
                         addToHistory(`Technologies: ${project.tech.join(', ')}`, 'output');
-                        if (project.github) addToHistory(`GitHub: ${project.github}`, 'output');
-                        if (project.live) addToHistory(`Live: ${project.live}`, 'output');
+                        if (project.link) addToHistory(`Link: ${project.link}`, 'output');
                         addToHistory('', 'output');
                     }
                 }
@@ -102,8 +101,9 @@ const Terminal = ({ onClose }) => {
             case 'contact':
                 addToHistory('Contact Information:', 'output');
                 addToHistory(`Email: ${personalInfo.email}`, 'output');
-                addToHistory(`LinkedIn: ${personalInfo.linkedin}`, 'output');
-                addToHistory(`GitHub: ${personalInfo.github}`, 'output');
+                personalInfo.socials.forEach(s => {
+                    addToHistory(`${s.name}: ${s.url}`, 'output');
+                });
                 addToHistory('', 'output');
                 break;
 

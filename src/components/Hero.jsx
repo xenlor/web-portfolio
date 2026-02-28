@@ -7,7 +7,7 @@ import avatarImage from '../assets/avatar.png';
 const Hero = ({ scrollToSection }) => (
     <motion.section
         id="inicio"
-        className="min-h-screen grid items-center pt-16 z-10 relative"
+        className="min-h-[100dvh] grid items-center pt-16 z-10 relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -55,7 +55,7 @@ const Hero = ({ scrollToSection }) => (
                 </motion.p>
 
                 <motion.div
-                    className="flex gap-4 pt-4"
+                    className="flex flex-wrap gap-4 pt-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}

@@ -1,30 +1,39 @@
 import React from 'react';
 import { Github, Linkedin } from 'lucide-react';
-import { VscTerminalBash, VscTerminalPowershell } from 'react-icons/vsc';
-import { FaMicrosoft, FaWindows } from 'react-icons/fa';
-import { SiN8N, SiOpenai, SiPython } from 'react-icons/si';
+import { SiGnubash, SiN8N, SiOpenai, SiPython } from 'react-icons/si';
 
-export const socials = [
-    { name: 'GitHub', icon: <Github size={20} />, url: 'https://github.com/xenlor' },
-    { name: 'LinkedIn', icon: <Linkedin size={20} />, url: 'https://www.linkedin.com/in/esteban-castillo-loren-595652303/' },
-];
 
 export const education = [
     {
         year: "2024 - 2025",
-        degree: "Máster FP Ciberseguridad (CETI)",
-        institution: "Curso de Especialización en Ciberseguridad en Entornos de las Tecnologías de la Información. Formación avanzada en análisis de vulnerabilidades, hacking ético, hardening de sistemas y respuesta ante incidentes de seguridad."
+        degree: "CETI — Ciberseguridad",
+        institution: "Curso de Especialización FP (Ministerio de Educación, España)",
+        tags: ["Hacking Ético", "Hardening", "Análisis de Vulnerabilidades", "Respuesta a Incidentes"],
     },
     {
         year: "2022 - 2024",
         degree: "Grado Superior ASIR",
-        institution: "Administración de Sistemas Informáticos en Red. Especialización en gestión de infraestructuras IT, virtualización, scripting avanzado, configuración de servicios de red y administración de sistemas GNU/Linux y Windows Server."
+        institution: "Administración de Sistemas Informáticos en Red",
+        tags: ["Linux", "Windows Server", "Virtualización", "Redes", "Scripting"],
     },
     {
         year: "2020 - 2022",
         degree: "Ingeniería Civil en Computación",
-        institution: "Universidad de Talca, Chile. Completé cinco semestres (dos años y medio) de la carrera antes de emigrar a España. Formación en fundamentos de programación, estructuras de datos, cálculo, álgebra lineal y arquitectura de computadores."
-    }
+        institution: "Universidad de Talca, Chile — 5 semestres antes de emigrar a España",
+        tags: ["Programación", "Algoritmos", "Arquitectura", "Álgebra Lineal"],
+    },
+];
+
+export const languages = [
+    { name: 'Español', level: 'Nativo', flag: '🇪🇸', percent: 100 },
+    { name: 'Inglés',  level: 'B2',     flag: '🇬🇧', percent: 72  },
+];
+
+export const softSkills = [
+    { icon: '🧠', label: 'Autodidacta',          desc: 'Me lanzo a aprender lo que necesito, cuando lo necesito. Al llegar a mi empresa, me adapté a las herramientas existentes y fui proponiendo mejoras de forma autónoma.' },
+    { icon: '🔍', label: 'Curioso por naturaleza', desc: 'No me conformo con que algo "funcione". Necesito entender el porqué y el cómo detrás de cada sistema.' },
+    { icon: '🤝', label: 'Trabajo en equipo',      desc: 'Colaboro bien y asumo el liderazgo cuando la situación lo requiere, sin necesitar que me lo pidan.' },
+    { icon: '🔧', label: 'Amante del cacharreo',   desc: 'Si puedo desmontarlo, entenderlo y mejorarlo, lo haré. El laboratorio personal es mi segundo hogar.' },
 ];
 
 export const projects = [
@@ -72,15 +81,27 @@ export const experience = [
         period: "Marzo 2024 - Actualidad",
         role: "Técnico Administrador de Sistemas",
         company: "Norsol - Energía Solar",
-        description: "Gestión integral de infraestructura IT corporativa: administración de Active Directory, Microsoft 365 y políticas de seguridad. Participación clave en la migración e implementación de Microsoft Dynamics 365 (ERP/CRM), desarrollando automatizaciones con Power Automate para optimizar procesos empresariales. Responsable de formación en ciberseguridad y concienciación del personal.",
-        link: "https://norsol.es"
+        summary: "Responsable del área de soporte técnico y ciberseguridad para una empresa de 80 personas.",
+        bullets: [
+            "Administración de Active Directory, Microsoft 365 y políticas de seguridad corporativa",
+            "Migración e implementación de Microsoft Dynamics 365 (ERP/CRM) desde cero",
+            "Automatizaciones con Power Automate para optimizar procesos empresariales",
+            "Soporte técnico integral como único responsable de IT para 80 empleados",
+            "Formación en ciberseguridad y concienciación del personal",
+        ],
+        link: "https://norsol.es",
     },
     {
         period: "2020 - 2021",
         role: "Servicio Técnico a Domicilio",
         company: "Freelance / Autónomo",
-        description: "Soporte técnico especializado a domicilio durante la pandemia COVID-19. Diagnóstico y resolución de fallos hardware/software, formateos y reinstalaciones de sistemas operativos, configuración de redes domésticas, instalación de software empresarial y optimización de rendimiento de equipos."
-    }
+        summary: "Soporte técnico especializado durante la pandemia COVID-19.",
+        bullets: [
+            "Diagnóstico y resolución de fallos hardware/software",
+            "Configuración de redes domésticas y software empresarial",
+            "Formateos, reinstalaciones y optimización de rendimiento",
+        ],
+    },
 ];
 
 const PowerAutomateIcon = ({ className }) => (
@@ -152,8 +173,8 @@ const DynamicsIcon = ({ className }) => (
         xmlns="http://www.w3.org/2000/svg"
         className={className}
     >
-        <polygon fill="#1a237e" points="11,1 11,14 29,22 38,16" />
-        <polygon fill="#1a237e" points="39,18 39,32 11,47 11,16 20,21 12,45" />
+        <polygon fill="#002050" points="11,1 11,14 29,22 38,16" />
+        <polygon fill="#0078D4" points="39,18 39,32 11,47 11,16 20,21 12,45" />
     </svg>
 );
 
@@ -218,15 +239,36 @@ const BusinessCentralIcon = ({ className }) => (
     </svg>
 );
 
+const PowerShellIcon = ({ className }) => (
+    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <path d="M23.181 2.974c.568 0 .923.463.792 1.035l-3.659 15.982c-.13.572-.697 1.035-1.265 1.035H.819c-.568 0-.923-.463-.792-1.035L3.686 4.009c.13-.572.697-1.035 1.265-1.035zm-8.375 9.346c.251-.394.227-.905-.09-1.243L9.122 5.125c-.38-.404-1.037-.407-1.466-.003-.429.402-.468 1.056-.088 1.46l4.662 4.96v.11l-7.42 5.374c-.45.327-.533.977-.187 1.453.346.476.991.597 1.44.27l8.229-5.91c.28-.196.438-.365.514-.52zm-2.796 4.399a.928.928 0 00-.934.923c0 .51.418.923.934.923h4.433a.928.928 0 00.934-.923.928.928 0 00-.934-.923z" />
+    </svg>
+);
+
+const WindowsADIcon = ({ className }) => (
+    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <path d="M0,0H11.377V11.372H0ZM12.623,0H24V11.372H12.623ZM0,12.623H11.377V24H0Zm12.623,0H24V24H12.623" />
+    </svg>
+);
+
+const Microsoft365Icon = ({ className }) => (
+    <svg width="1em" height="1em" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <path d="M1 1h10v10H1z" fill="#F25022" />
+        <path d="M12 1h10v10H12z" fill="#7FBA00" />
+        <path d="M1 12h10v10H1z" fill="#00A4EF" />
+        <path d="M12 12h10v10H12z" fill="#FFB900" />
+    </svg>
+);
+
 export const stack = [
-    { name: "Python (Tools)", icon: <SiPython className="text-[#3776AB]" />, description: "Scripting y automatización de tareas complejas." },
-    { name: "PowerShell", icon: <VscTerminalPowershell className="text-[#5391FE]" />, description: "Administración y automatización en entornos Windows." },
-    { name: "Bash / Linux", icon: <VscTerminalBash className="text-[#4EAA25]" />, description: "Gestión de servidores y scripting en entornos Unix." },
-    { name: "Admin M365", icon: <FaMicrosoft className="text-[#00A4EF]" />, description: "Gestión integral de tenants Microsoft 365." },
-    { name: "PowerAutomate", icon: <PowerAutomateIcon className="text-[#0066FF]" />, description: "Creación de flujos de trabajo automatizados." },
+    { name: "Python", icon: <SiPython className="text-[#3776AB]" />, description: "Scripting y automatización de tareas complejas." },
+    { name: "PowerShell", icon: <PowerShellIcon className="text-[#5391FE]" />, description: "Administración y automatización en entornos Windows." },
+    { name: "Bash / Linux", icon: <SiGnubash className="text-[#4EAA25]" />, description: "Gestión de servidores y scripting en entornos Unix." },
+    { name: "Admin M365", icon: <Microsoft365Icon />, description: "Gestión integral de tenants Microsoft 365." },
+    { name: "Power Automate", icon: <PowerAutomateIcon />, description: "Creación de flujos de trabajo automatizados." },
     { name: "N8N", icon: <SiN8N className="text-[#EA4B71]" />, description: "Automatización de flujos de trabajo con integración de APIs." },
-    { name: "Active Directory", icon: <FaWindows className="text-[#0078D6]" />, description: "Gestión de identidades y accesos corporativos." },
-    { name: "Dynamics 365", icon: <DynamicsIcon className="text-[#753BBD]" />, description: "Administración y personalización de soluciones ERP/CRM." },
-    { name: "Business Central", icon: <BusinessCentralIcon className="text-[#00B1BE]" />, description: "Gestión empresarial integral y finanzas." },
+    { name: "Active Directory", icon: <WindowsADIcon className="text-[#0078D4]" />, description: "Gestión de identidades y accesos corporativos." },
+    { name: "Dynamics 365", icon: <DynamicsIcon />, description: "Administración y personalización de soluciones ERP/CRM." },
+    { name: "Business Central", icon: <BusinessCentralIcon />, description: "Gestión empresarial integral y finanzas." },
     { name: "GenAI Tools", icon: <SiOpenai className="text-[#10A37F]" />, description: "Integración de IA generativa en flujos de trabajo." }
 ];

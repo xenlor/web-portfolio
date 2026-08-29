@@ -7,34 +7,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#7c3aed" />
 
-    <title>xenlor.dev | Administración de Sistemas y Ciberseguridad</title>
-    <meta name="description" content="Portfolio de Esteban Castillo (xenlor). Administración de sistemas y ciberseguridad en Burgos: Microsoft 365, Active Directory, red perimetral y automatización." />
+    <!-- El titulo empieza por el nombre, no por el dominio: quien busca
+         "Esteban Castillo" tiene que reconocerse en el primer vistazo. El alias
+         va entre parentesis para cubrir tambien las busquedas por "xenlor".
+         Google recorta sobre los 60 caracteres; este mide 53. -->
+    <title>Esteban Castillo (xenlor) | Sistemas y Ciberseguridad</title>
+    <!-- La descripcion se recorta sobre los 160; esta mide 163, asi que el
+         corte, si llega, cae en la ultima palabra y no se pierde nada. -->
+    <meta name="description" content="Portfolio de Esteban Castillo, técnico de sistemas y ciberseguridad en Burgos. Microsoft 365, Active Directory, redes y seguridad perimetral, con automatización." />
     <meta name="author" content="Esteban Castillo Loren" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <!-- Open Graph: lo que se ve al pegar el enlace en WhatsApp o LinkedIn -->
+    <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://xenlor.dev/" />
-    <meta property="og:title" content="xenlor.dev | Administración de Sistemas y Ciberseguridad" />
-    <meta property="og:description" content="Portfolio de Esteban Castillo (xenlor). Administración de sistemas y ciberseguridad en Burgos: Microsoft 365, Active Directory, red perimetral y automatización." />
+    <meta property="og:title" content="Esteban Castillo (xenlor) | Sistemas y Ciberseguridad" />
+    <meta property="og:description" content="Portfolio de Esteban Castillo, técnico de sistemas y ciberseguridad en Burgos. Microsoft 365, Active Directory, redes y seguridad perimetral, con automatización." />
     <meta property="og:image" content="https://xenlor.dev/og-image.png" />
+    <meta property="og:image:alt" content="Esteban Castillo, técnico de sistemas y ciberseguridad" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="xenlor.dev" />
+    <meta property="profile:first_name" content="Esteban" />
+    <meta property="profile:last_name" content="Castillo Loren" />
+    <meta property="profile:username" content="xenlor" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://xenlor.dev/" />
-    <meta name="twitter:title" content="xenlor.dev | Administración de Sistemas y Ciberseguridad" />
-    <meta name="twitter:description" content="Portfolio de Esteban Castillo (xenlor). Administración de sistemas y ciberseguridad en Burgos." />
+    <meta name="twitter:title" content="Esteban Castillo (xenlor) | Sistemas y Ciberseguridad" />
+    <meta name="twitter:description" content="Portfolio de Esteban Castillo, técnico de sistemas y ciberseguridad en Burgos." />
     <meta name="twitter:image" content="https://xenlor.dev/og-image.png" />
 
-    <!-- Canonical -->
     <link rel="canonical" href="https://xenlor.dev/" />
 
-    <!-- Preconnect para fuentes/recursos externos si se añaden en el futuro -->
+    <!-- Datos estructurados. Es lo que permite a Google entender que esto es
+         una PERSONA con un nombre, un oficio y unos perfiles, en vez de una
+         pagina cualquiera. Sin esto, buscar "Esteban Castillo" no relaciona
+         este sitio con la persona. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Esteban Castillo Loren",
+      "alternateName": "xenlor",
+      "url": "https://xenlor.dev/",
+      "image": "https://xenlor.dev/og-image.png",
+      "email": "contacto@xenlor.dev",
+      "jobTitle": "Técnico de Sistemas y Ciberseguridad",
+      "description": "Técnico de sistemas con especialización en ciberseguridad y orientación a la automatización.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Burgos",
+        "addressCountry": "ES"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Norsol Eléctrica, S.L."
+      },
+      "alumniOf": [
+        { "@type": "EducationalOrganization", "name": "CIFP Juan de Colonia" },
+        { "@type": "CollegeOrUniversity", "name": "Universidad de Talca" }
+      ],
+      "knowsAbout": [
+        "Administración de sistemas",
+        "Ciberseguridad",
+        "Microsoft 365",
+        "Active Directory",
+        "Redes y seguridad perimetral",
+        "Virtualización",
+        "Automatización"
+      ],
+      "sameAs": [
+        "https://github.com/xenlor",
+        "https://www.linkedin.com/in/esteban-castillo-loren-595652303/"
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+
+    <!--
+      El contenido de la pagina lo pinta React, asi que el HTML que se sirve
+      llega sin texto. Google ejecuta JavaScript, pero en una segunda pasada
+      que puede tardar dias; otros rastreadores no lo ejecutan nunca. Esto
+      garantiza que quien lea el HTML en crudo encuentre al menos quien es y
+      a que se dedica. Solo se muestra si el JavaScript no llega a ejecutarse.
+    -->
+    <noscript>
+      <h1>Esteban Castillo Loren (xenlor)</h1>
+      <p>Técnico de sistemas y ciberseguridad en Burgos, España.</p>
+      <p>
+        Administro la infraestructura de una empresa: Microsoft 365, Active
+        Directory, servidores Windows y Linux, virtualización, red perimetral
+        con FortiGate y CRM/ERP. Automatizo con PowerShell, Python y n8n.
+      </p>
+      <p>Contacto: <a href="mailto:contacto@xenlor.dev">contacto@xenlor.dev</a></p>
+      <p>
+        <a href="https://github.com/xenlor">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/esteban-castillo-loren-595652303/">LinkedIn</a>
+      </p>
+    </noscript>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

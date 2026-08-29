@@ -5,7 +5,7 @@ import RevealSection from './ui/RevealSection';
 import SectionHeading from './ui/SectionHeading';
 import { projects } from '../data/data';
 
-const glassClass = "bg-white/85 dark:bg-white/[0.03] backdrop-blur-md border border-purple-200/60 dark:border-white/[0.08] shadow-sm dark:shadow-none";
+const glassClass = "bg-white/85 dark:bg-white/3 backdrop-blur-md border border-purple-200/60 dark:border-white/8 shadow-xs dark:shadow-none";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -68,7 +68,7 @@ const ProjectsList = () => (
                     className={`group block relative rounded-3xl overflow-hidden hover:border-purple-500/40 dark:hover:border-purple-400/30 hover:shadow-[0_20px_60px_rgba(139,92,246,0.2)] dark:hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 ${glassClass}`}
                 >
                     {/* Gradient overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 to-blue-600/0 group-hover:from-purple-600/5 group-hover:to-blue-600/5 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-linear-to-br from-purple-600/0 to-blue-600/0 group-hover:from-purple-600/5 group-hover:to-blue-600/5 transition-all duration-500" />
 
                     <div className="p-8 space-y-6 h-full flex flex-col relative z-10">
                         <div className="flex justify-between items-start">
@@ -82,7 +82,7 @@ const ProjectsList = () => (
                             )}
                         </div>
 
-                        <div className="flex-grow space-y-3">
+                        <div className="grow space-y-3">
                             <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-200 transition-colors">
                                 {project.title}
                             </h3>

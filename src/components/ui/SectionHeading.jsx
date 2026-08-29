@@ -9,7 +9,7 @@ const SectionHeading = ({ icon: Icon, title }) => (
         transition={{ duration: 0.5 }}
         className="flex items-center gap-3 mb-8"
     >
-        <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-500/20 shadow-sm dark:shadow-[0_0_10px_rgba(168,85,247,0.1)]">
+        <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-500/20 shadow-xs dark:shadow-[0_0_10px_rgba(168,85,247,0.1)]">
             <Icon size={24} />
         </div>
         <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">{title}</h2>

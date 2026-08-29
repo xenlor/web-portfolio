@@ -6,7 +6,7 @@ import SectionHeading from './ui/SectionHeading';
 import { experience, education, languages, softSkills } from '../data/data';
 import TechCarousel from './ui/TechCarousel';
 
-const glassClass = "bg-white/85 dark:bg-white/[0.03] backdrop-blur-md border border-purple-200/60 dark:border-white/[0.08] shadow-sm dark:shadow-none";
+const glassClass = "bg-white/85 dark:bg-white/3 backdrop-blur-md border border-purple-200/60 dark:border-white/8 shadow-xs dark:shadow-none";
 
 const TABS = [
     { label: 'Experiencia', icon: Layers },
@@ -54,7 +54,7 @@ const About = () => {
                                 >
                                     <span className="text-base">{lang.flag}</span>
                                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{lang.name}</span>
-                                    <span className="text-xs text-purple-600 dark:text-purple-400 font-mono bg-purple-100 dark:bg-purple-900/30 px-1.5 py-0.5 rounded">
+                                    <span className="text-xs text-purple-600 dark:text-purple-400 font-mono bg-purple-100 dark:bg-purple-900/30 px-1.5 py-0.5 rounded-sm">
                                         {lang.level}
                                     </span>
                                 </div>
@@ -143,13 +143,13 @@ const About = () => {
                                 {experience.map((job, idx) => {
                                     const card = (
                                         <motion.div
-                                            className={`relative p-6 md:p-8 rounded-2xl hover:border-purple-500/30 transition-all shadow-sm ${glassClass} ${job.link ? 'cursor-pointer hover:scale-[1.01]' : ''}`}
+                                            className={`relative p-6 md:p-8 rounded-2xl hover:border-purple-500/30 transition-all shadow-xs ${glassClass} ${job.link ? 'cursor-pointer hover:scale-[1.01]' : ''}`}
                                             initial={{ opacity: 0, x: -20 }}
                                             whileInView={{ opacity: 1, x: 0 }}
                                             viewport={{ once: true }}
                                             transition={{ delay: 0.1 * (idx + 1) }}
                                         >
-                                            <span className="absolute -left-[41px] md:-left-[49px] top-8 h-4 w-4 rounded-full border-2 border-white dark:border-[#050505] bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.8)]" />
+                                            <span className="absolute left-[-41px] md:left-[-49px] top-8 h-4 w-4 rounded-full border-2 border-white dark:border-[#050505] bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.8)]" />
 
                                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-2">
                                                 <h4 className="text-xl font-bold text-gray-900 dark:text-white">{job.role}</h4>
@@ -210,7 +210,7 @@ const About = () => {
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.1 * (idx + 1) }}
                                     >
-                                        <span className="absolute -left-[39px] md:-left-[47px] top-7 h-3 w-3 rounded-full border-2 border-white dark:border-[#050505] bg-gray-400 dark:bg-gray-600" />
+                                        <span className="absolute left-[-39px] md:left-[-47px] top-7 h-3 w-3 rounded-full border-2 border-white dark:border-[#050505] bg-gray-400 dark:bg-gray-600" />
 
                                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-1">
                                             <h4 className="text-lg font-bold text-gray-900 dark:text-white">{edu.degree}</h4>
@@ -257,7 +257,7 @@ const About = () => {
                                                     </div>
                                                     <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                                                         <div
-                                                            className="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
+                                                            className="h-full bg-linear-to-r from-purple-500 to-blue-500 rounded-full"
                                                             style={{ width: `${lang.percent}%` }}
                                                         />
                                                     </div>

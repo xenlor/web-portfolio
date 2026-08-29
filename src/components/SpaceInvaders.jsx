@@ -364,7 +364,7 @@ const SpaceInvaders = ({ onClose }) => {
     }, [gameState, initGame]);
 
     return (
-        <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center">
+        <div className="fixed inset-0 z-100 bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center">
             {/* Interfaz de Cabecera */}
             <div className="absolute top-4 left-0 right-0 px-6 flex justify-between items-center text-white">
                 <div className="font-mono text-xl flex gap-6">
@@ -381,7 +381,7 @@ const SpaceInvaders = ({ onClose }) => {
                 {/* --- PANTALLA DE INICIO --- */}
                 {gameState === 'start' && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 text-white text-center p-4">
-                        <h2 className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">SYSTEM BREACH</h2>
+                        <h2 className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">SYSTEM BREACH</h2>
                         <p className="mb-8 font-mono text-sm text-gray-300">Defiende el servidor de la intrusión.<br />Usa flechas para moverte, espacio para disparar.</p>
                         <button onClick={() => setGameState('playing')} className="flex items-center gap-2 px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-bold transition-all hover:scale-105">
                             <Play size={20} /> INICIAR PROTOCOLO

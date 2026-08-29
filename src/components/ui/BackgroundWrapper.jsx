@@ -32,9 +32,9 @@ const BackgroundWrapper = ({ performanceMode = false }) => (
             className={`absolute inset-0
         bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)]
         dark:bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)]
-        bg-[size:4rem_4rem]
+        bg-size-[4rem_4rem]
         ${!performanceMode
-                    ? '[mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]'
+                    ? 'mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]'
                     : 'opacity-20'
                 }`}
         />
@@ -42,7 +42,7 @@ const BackgroundWrapper = ({ performanceMode = false }) => (
         {!performanceMode ? (
             <>
                 {/* ── Aurora 4 capas ── */}
-                <div className="aurora aurora-1 aurora-purple absolute -top-[25%] left-[5%]   w-[65vw] h-[65vw] max-w-[750px] max-h-[750px] rounded-full" />
+                <div className="aurora aurora-1 aurora-purple absolute top-[-25%] left-[5%]   w-[65vw] h-[65vw] max-w-[750px] max-h-[750px] rounded-full" />
                 <div className="aurora aurora-2 aurora-indigo  absolute top-[15%]  right-[-8%]  w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] rounded-full" />
                 <div className="aurora aurora-3 aurora-violet  absolute bottom-[-20%] left-[25%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] rounded-full" />
                 <div className="aurora aurora-4 aurora-blue    absolute top-[45%]  left-[-5%]  w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full" />
@@ -66,7 +66,7 @@ const BackgroundWrapper = ({ performanceMode = false }) => (
                 </div>
             </>
         ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-indigo-500/5 dark:from-purple-900/10 dark:via-transparent dark:to-indigo-900/10" />
+            <div className="absolute inset-0 bg-linear-to-br from-purple-500/5 via-transparent to-indigo-500/5 dark:from-purple-900/10 dark:via-transparent dark:to-indigo-900/10" />
         )}
     </div>
 );

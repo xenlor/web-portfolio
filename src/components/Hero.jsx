@@ -7,7 +7,7 @@ import avatarImage from '../assets/avatar.webp';
 const Hero = ({ scrollToSection }) => (
     <motion.section
         id="inicio"
-        className="min-h-[100dvh] grid items-center pt-16 z-10 relative"
+        className="min-h-dvh grid items-center pt-16 z-10 relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -21,7 +21,7 @@ const Hero = ({ scrollToSection }) => (
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="inline-flex items-center gap-2 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-mono border border-purple-200 dark:border-purple-500/30 backdrop-blur-sm"
+                    className="inline-flex items-center gap-2 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-mono border border-purple-200 dark:border-purple-500/30 backdrop-blur-xs"
                 >
                     <Terminal size={14} />
                     <span>@{personalInfo.alias}</span>
@@ -33,7 +33,7 @@ const Hero = ({ scrollToSection }) => (
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                 >
-                    Hola, soy <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 dark:from-purple-400 dark:via-blue-400 dark:to-purple-400 animate-gradient-x">{personalInfo.name}.</span>
+                    Hola, soy <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-600 via-blue-600 to-purple-600 dark:from-purple-400 dark:via-blue-400 dark:to-purple-400 animate-gradient-x">{personalInfo.name}.</span>
                 </motion.h1>
 
                 <motion.h2
@@ -68,7 +68,7 @@ const Hero = ({ scrollToSection }) => (
                     </button>
                     <button
                         onClick={() => scrollToSection('contacto')}
-                        className="px-8 py-4 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-100 dark:hover:bg-gray-800/50 hover:text-black dark:hover:text-white transition-all backdrop-blur-sm hover:scale-105 active:scale-95"
+                        className="px-8 py-4 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-100 dark:hover:bg-gray-800/50 hover:text-black dark:hover:text-white transition-all backdrop-blur-xs hover:scale-105 active:scale-95"
                     >
                         Contactar
                     </button>
@@ -83,7 +83,7 @@ const Hero = ({ scrollToSection }) => (
                 transition={{ delay: 0.4, type: "spring" }}
             >
                 {/* Resplandor detrás del avatar */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-purple-400/30 to-blue-400/30 dark:from-purple-600/30 dark:to-blue-600/30 rounded-full blur-3xl animate-pulse z-0" style={{ transform: 'scale(1.2)' }} />
+                <div className="absolute inset-0 bg-linear-to-tr from-purple-400/30 to-blue-400/30 dark:from-purple-600/30 dark:to-blue-600/30 rounded-full blur-3xl animate-pulse z-0" style={{ transform: 'scale(1.2)' }} />
 
                 {/* Contenedor del avatar */}
                 <motion.div

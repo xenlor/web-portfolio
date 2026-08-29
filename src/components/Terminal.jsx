@@ -164,7 +164,7 @@ const Terminal = ({ onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-100 bg-black/95 backdrop-blur-xs flex items-center justify-center p-4"
             onClick={(e) => e.target === e.currentTarget && onClose()}
         >
             <motion.div
@@ -215,7 +215,7 @@ const Terminal = ({ onClose }) => {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        className="flex-1 bg-transparent text-green-400 outline-none caret-green-400"
+                        className="flex-1 bg-transparent text-green-400 outline-hidden caret-green-400"
                         autoFocus
                         spellCheck={false}
                     />

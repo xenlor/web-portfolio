@@ -15,7 +15,7 @@ const NavItem = ({ active, label, onClick, mobile = false }) => (
         {!mobile && active && (
             <motion.span
                 layoutId="nav-glow"
-                className="absolute inset-0 bg-purple-100 dark:bg-purple-500/10 rounded-lg -z-10 border border-purple-200 dark:border-purple-500/20 shadow-sm dark:shadow-[0_0_15px_rgba(168,85,247,0.15)]"
+                className="absolute inset-0 bg-purple-100 dark:bg-purple-500/10 rounded-lg -z-10 border border-purple-200 dark:border-purple-500/20 shadow-xs dark:shadow-[0_0_15px_rgba(168,85,247,0.15)]"
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
             />
         )}

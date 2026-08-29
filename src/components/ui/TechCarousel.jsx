@@ -185,7 +185,7 @@ const TechCarousel = () => {
             {/* Botón Izquierda */}
             <button
                 onClick={() => scrollManual('left')}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:scale-110 transition-all opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs rounded-full shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:scale-110 transition-all opacity-0 group-hover/carousel:opacity-100 disabled:opacity-0"
                 aria-label="Scroll Left"
             >
                 <ChevronLeft size={24} />
@@ -194,7 +194,7 @@ const TechCarousel = () => {
             {/* Contenedor Scroll */}
             <div
                 ref={scrollRef}
-                className="w-full overflow-x-hidden flex items-center py-20 touch-pan-y [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%_-_128px),transparent_100%)]"
+                className="w-full overflow-x-hidden flex items-center py-20 touch-pan-y mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
                 onTouchStart={handleTouchStart}
@@ -224,7 +224,7 @@ const TechCarousel = () => {
             {/* Botón Derecha */}
             <button
                 onClick={() => scrollManual('right')}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:scale-110 transition-all opacity-0 group-hover/carousel:opacity-100"
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xs rounded-full shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:scale-110 transition-all opacity-0 group-hover/carousel:opacity-100"
                 aria-label="Scroll Right"
             >
                 <ChevronRight size={24} />

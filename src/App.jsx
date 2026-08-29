@@ -302,7 +302,7 @@ export default function App() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-50 p-4 bg-purple-600 dark:bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 dark:hover:bg-purple-500 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+            className="fixed bottom-8 right-8 z-50 p-4 bg-purple-600 dark:bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 dark:hover:bg-purple-500 transition-colors focus:outline-hidden focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
             whileHover={{ y: -5 }}
             whileTap={{ scale: 0.9 }}
           >

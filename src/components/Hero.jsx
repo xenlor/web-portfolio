@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, ChevronDown } from 'lucide-react';
+import { Terminal, ChevronDown, Download } from 'lucide-react';
 import { personalInfo } from '../data/data';
 import avatarImage from '../assets/avatar.webp';
 
@@ -76,6 +76,16 @@ const Hero = ({ scrollToSection }) => (
                     >
                         Ver Proyectos
                     </button>
+                    {/* download hace que el navegador lo guarde en vez de abrirlo
+                        en su visor, que es lo que se espera de un CV. */}
+                    <a
+                        href="/cv-esteban-castillo.pdf"
+                        download
+                        className="px-8 py-4 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-100 dark:hover:bg-gray-800/50 hover:text-black dark:hover:text-white transition-all backdrop-blur-xs hover:scale-105 active:scale-95 inline-flex items-center gap-2"
+                    >
+                        <Download size={18} />
+                        Descargar CV
+                    </a>
                     <button
                         onClick={() => scrollToSection('contacto')}
                         className="px-8 py-4 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-100 dark:hover:bg-gray-800/50 hover:text-black dark:hover:text-white transition-all backdrop-blur-xs hover:scale-105 active:scale-95"

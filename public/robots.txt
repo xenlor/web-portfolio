@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# El CV se descarga desde la web, pero no debe salir suelto en Google: lleva
+# el correo y competiria con la propia pagina en los resultados.
+Disallow: /cv-esteban-castillo.pdf
+
 Sitemap: https://xenlor.dev/sitemap.xml

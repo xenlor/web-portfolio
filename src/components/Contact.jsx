@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail } from 'lucide-react';
+import { Mail, Download } from 'lucide-react';
 import RevealSection from './ui/RevealSection';
 import { personalInfo } from '../data/data';
 
@@ -28,13 +28,21 @@ const Contact = () => (
                         Pero si tienes una duda o te apetece hablar de sistemas, escríbeme.
                     </p>
 
-                    <div className="pt-4">
+                    <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
                             href={`mailto:${personalInfo.email}`}
                             className="inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-bold text-white bg-linear-to-r from-purple-600 to-blue-600 rounded-2xl hover:from-purple-700 hover:to-blue-700 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 active:scale-95"
                         >
                             <Mail size={20} />
                             {personalInfo.email}
+                        </a>
+                        <a
+                            href="/cv-esteban-castillo.pdf"
+                            download
+                            className="inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-bold text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/5 hover:text-black dark:hover:text-white hover:scale-105 transition-all duration-300 active:scale-95"
+                        >
+                            <Download size={20} />
+                            Descargar CV
                         </a>
                     </div>
 

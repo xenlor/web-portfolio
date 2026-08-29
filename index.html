@@ -2,6 +2,10 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <!-- El SVG primero: escala a cualquier tamano sin pesar. Los PNG quedan de
+         reserva para navegadores que no lo admiten. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +30,9 @@
     <meta property="og:image" content="https://xenlor.dev/og-image.png" />
     <meta property="og:image:alt" content="Esteban Castillo, técnico de sistemas y ciberseguridad" />
     <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="xenlor.dev" />
+    <!-- El nombre que Google muestra encima del resultado. Con "xenlor.dev"
+         salia el dominio, que no dice quien eres. -->
+    <meta property="og:site_name" content="Esteban Castillo" />
     <meta property="profile:first_name" content="Esteban" />
     <meta property="profile:last_name" content="Castillo Loren" />
     <meta property="profile:username" content="xenlor" />
@@ -43,10 +49,25 @@
          una PERSONA con un nombre, un oficio y unos perfiles, en vez de una
          pagina cualquiera. Sin esto, buscar "Esteban Castillo" no relaciona
          este sitio con la persona. -->
+    <!-- WebSite: es de donde Google saca el nombre del sitio que aparece encima
+         del titulo en los resultados. Sin esto usa el dominio, "xenlor.dev". -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Esteban Castillo",
+      "alternateName": ["xenlor", "xenlor.dev"],
+      "url": "https://xenlor.dev/",
+      "inLanguage": "es-ES",
+      "author": { "@id": "https://xenlor.dev/#persona" }
+    }
+    </script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://xenlor.dev/#persona",
       "name": "Esteban Castillo Loren",
       "alternateName": "xenlor",
       "url": "https://xenlor.dev/",

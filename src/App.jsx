@@ -290,7 +290,7 @@ export default function App() {
             <Rocket size={14} />
           </button>
           <span className="hidden md:inline">|</span>
-          <span>Built with <span className="text-purple-600 dark:text-purple-400">React</span>, <span className="text-blue-600 dark:text-blue-400">Tailwind</span>, <span className="text-red-500 dark:text-red-400">Love</span> y  un poco de <span className="text-purple-600 dark:text-purple-400">IA 🤖</span>.</span>
+          <span>Hecho con <span className="text-purple-600 dark:text-purple-400">React</span> y <span className="text-blue-600 dark:text-blue-400">Tailwind</span>, y alojado en mi propio servidor.</span>
         </p>
       </footer>
 

@@ -41,7 +41,7 @@ export const languages = [
 export const softSkills = [
     { icon: '🧠', label: 'Autodidacta',          desc: 'Me lanzo a aprender lo que necesito, cuando lo necesito. Al llegar a mi empresa, me adapté a las herramientas existentes y fui proponiendo mejoras de forma autónoma.' },
     { icon: '🔍', label: 'Curioso por naturaleza', desc: 'No me conformo con que algo "funcione". Necesito entender el porqué y el cómo detrás de cada sistema.' },
-    { icon: '🤝', label: 'Trabajo en equipo',      desc: 'Colaboro bien y asumo el liderazgo cuando la situación lo requiere, sin necesitar que me lo pidan.' },
+    { icon: '🤝', label: 'Trabajo en equipo',      desc: 'Trabajo bien acompañado y tiro del carro cuando hace falta, sin esperar a que me lo pidan.' },
     { icon: '🔧', label: 'Amante del cacharreo',   desc: 'Si puedo desmontarlo, entenderlo y mejorarlo, lo haré. El laboratorio personal es mi segundo hogar.' },
 ];
 
@@ -90,7 +90,7 @@ export const personalInfo = {
     name: "Esteban",
     alias: "xenlor",
     role: "Administración de Sistemas & Ciberseguridad",
-    tagline: "Pasión por la tecnología, vocación por la seguridad.",
+    tagline: "Administro sistemas, los aseguro y automatizo lo que se puede.",
     bio: "Desde Chile hasta Burgos, mi carrera se define por la curiosidad. Administro la infraestructura de una empresa (Microsoft 365, Active Directory, red perimetral y ERP) y automatizo lo que aún se hace a mano. No solo mantengo sistemas: los estudio, los protejo y los rompo en mi laboratorio para entender por qué funcionan.",
     email: "contacto@xenlor.dev",
     socials: [
@@ -289,12 +289,12 @@ export const stack = [
     { name: "Python", icon: <SiPython className="text-[#3776AB]" />, description: "Scripting y automatización de tareas complejas." },
     { name: "PowerShell", icon: <PowerShellIcon className="text-[#5391FE]" />, description: "Administración y automatización en entornos Windows." },
     { name: "Bash / Linux", icon: <SiGnubash className="text-[#4EAA25]" />, description: "Gestión de servidores y scripting en entornos Unix." },
-    { name: "Admin M365", icon: <Microsoft365Icon />, description: "Gestión integral de tenants Microsoft 365." },
+    { name: "Admin M365", icon: <Microsoft365Icon />, description: "Administración de tenants: Exchange, SharePoint, Teams e Intune." },
     { name: "Power Automate", icon: <PowerAutomateIcon />, description: "Creación de flujos de trabajo automatizados." },
     { name: "N8N", icon: <SiN8N className="text-[#EA4B71]" />, description: "Automatización de flujos de trabajo con integración de APIs." },
     { name: "Active Directory", icon: <WindowsADIcon className="text-[#0078D4]" />, description: "Gestión de identidades y accesos corporativos." },
-    { name: "Dynamics 365", icon: <DynamicsIcon />, description: "Administración y personalización de soluciones ERP/CRM." },
-    { name: "Business Central", icon: <BusinessCentralIcon />, description: "Gestión empresarial integral y finanzas." },
+    { name: "Dynamics 365", icon: <DynamicsIcon />, description: "Administración y personalización del CRM de la empresa." },
+    { name: "Business Central", icon: <BusinessCentralIcon />, description: "ERP: cargas de datos, reglas de negocio y sincronizaciones." },
     { name: "GenAI Tools", icon: <SiOpenai className="text-[#10A37F]" />, description: "Integración de IA generativa en flujos de trabajo." },
     { name: "FortiGate", icon: <SiFortinet className="text-[#EE3124]" />, description: "Cortafuegos perimetral, segmentación en VLAN y VPN corporativa." },
     { name: "VMware", icon: <SiVmware className="text-[#607078]" />, description: "Virtualización de servidores en entorno empresarial." },

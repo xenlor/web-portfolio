@@ -24,8 +24,8 @@ const Contact = () => (
 
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">¿Hablamos?</h2>
                     <p className="text-gray-600 dark:text-gray-300 text-lg max-w-xl mx-auto">
-                        Actualmente no estoy buscando nuevas oportunidades laborales.<br></br>
-                        Sin embargo, si tienes alguna consulta o simplemente quieres charlar sobre tecnología, ¡no dudes en escribirme!
+                        Ahora mismo no busco trabajo.<br></br>
+                        Pero si tienes una duda o te apetece hablar de sistemas, escríbeme.
                     </p>
 
                     <div className="pt-4">

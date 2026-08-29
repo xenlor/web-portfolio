@@ -1,75 +1,52 @@
-# Portfolio Xenlor
+# web-portfolio
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react&logoColor=black)
-![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwind-css&logoColor=white)
+Portfolio personal de Esteban Castillo (xenlor), técnico de sistemas y
+ciberseguridad. Publicado en [xenlor.dev](https://xenlor.dev).
 
-Portafolio personal de **Esteban (xenlor)**, SysAdmin y especialista en Ciberseguridad. Este proyecto muestra mi experiencia, habilidades técnicas y proyectos destacados en un entorno web moderno y dinámico.
+## Stack
 
-## 🚀 Descripción
+React 19 con Vite 7, Tailwind 3.4 y Framer Motion para las animaciones. Los
+iconos son de Lucide, salvo los de marca, que van como SVG en línea en
+`src/components/ui/IconosMarca.jsx` para no arrastrar una librería entera por
+ocho rutas.
 
-Este portafolio está construido con tecnologías web modernas para ofrecer una experiencia de usuario fluida y atractiva. Diseñado para destacar tanto mis habilidades en infraestructura y seguridad como mi capacidad para desarrollar soluciones web.
+## Desarrollo
 
-## ✨ Características
+```bash
+npm install
+npm run dev      # servidor local
+npm run build    # compila a dist/
+npm run lint
+```
 
--   **Diseño Responsivo**: Adaptable a dispositivos móviles, tablets y escritorio.
--   **Modo Oscuro/Claro**: Soporte nativo para temas visuales.
--   **Animaciones Fluidas**: Integración de Framer Motion para transiciones suaves.
--   **Carrusel Infinito**: Componente personalizado para mostrar el stack tecnológico.
--   **Modo Rendimiento**: Optimización automática/manual para dispositivos con recursos limitados.
--   **UI Moderna**: Estilizado con TailwindCSS y componentes visuales atractivos.
+## Despliegue
 
-## 🛠️ Stack Tecnológico
+La web se autoaloja en un contenedor propio con nginx, detrás de un proxy
+inverso que pone el TLS. `scripts/deploy.sh` compila, empaqueta y sube:
 
--   **Frontend**: [React](https://react.dev/)
--   **Build Tool**: [Vite](https://vitejs.dev/)
--   **Estilos**: [TailwindCSS](https://tailwindcss.com/)
--   **Iconos**: [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
--   **Animaciones**: [Framer Motion](https://www.framer.com/motion/)
+```bash
+bash scripts/deploy.sh
+```
 
-## 📦 Instalación y Uso
+El destino se puede cambiar con las variables `DEPLOY_HOST` y `DEPLOY_CT`.
 
-Sigue estos pasos para ejecutar el proyecto localmente:
-
-1.  **Clonar el repositorio**:
-    ```bash
-    git clone https://github.com/xenlor/portfolio-xenlor.git
-    cd portfolio-xenlor
-    ```
-
-2.  **Instalar dependencias**:
-    ```bash
-    npm install
-    ```
-
-3.  **Iniciar servidor de desarrollo**:
-    ```bash
-    npm run dev
-    ```
-
-4.  **Construir para producción**:
-    ```bash
-    npm run build
-    ```
-
-## 📂 Estructura del Proyecto
+## Estructura
 
 ```
 src/
-├── components/     # Componentes reutilizables (UI, Layout, etc.)
-├── data/          # Datos estáticos (proyectos, experiencia, perfil)
-├── App.jsx        # Componente principal
-├── main.jsx       # Punto de entrada
-└── index.css      # Estilos globales y configuración de Tailwind
+├── components/     # secciones de la página y piezas de UI
+├── data/           # el contenido: experiencia, formación, proyectos, stack
+├── context/        # modo rendimiento
+├── hooks/          # detección de aceleración por hardware
+├── App.jsx         # composición y navegación
+└── index.css       # estilos globales y capas de fondo
 ```
 
-## 📬 Contacto
+Casi todo lo que hay que tocar para actualizar la página vive en
+`src/data/data.jsx`.
 
--   **Email**: contacto@xenlor.dev
--   **GitHub**: [xenlor](https://github.com/xenlor)
--   **LinkedIn**: [Esteban Castillo Loren](https://www.linkedin.com/in/esteban-castillo-loren-595652303/)
+## Contacto
 
----
-
-Desarrollado con ❤️ por [xenlor](https://github.com/xenlor)
+- contacto@xenlor.dev
+- [GitHub](https://github.com/xenlor)
+- [LinkedIn](https://www.linkedin.com/in/esteban-castillo-loren-595652303/)

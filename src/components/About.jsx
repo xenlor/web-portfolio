@@ -41,8 +41,8 @@ const About = () => {
                             la parte técnica, de soporte y ciberseguridad para toda la empresa.
                         </p>
                         <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                            No me conformo con que las cosas funcionen — necesito entender
-                            por qué funcionan, y cómo hacerlas más seguras. Así llegué a la ciberseguridad.
+                            No me conformo con que las cosas funcionen. Necesito entender
+                            por qué lo hacen, y cómo hacerlas más seguras. Así llegué a la ciberseguridad.
                         </p>
 
                         {/* Idiomas */}

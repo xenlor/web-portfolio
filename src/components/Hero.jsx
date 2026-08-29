@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Terminal, ChevronDown } from 'lucide-react';
 import { personalInfo } from '../data/data';
-import avatarImage from '../assets/avatar.png';
+import avatarImage from '../assets/avatar.webp';
 
 const Hero = ({ scrollToSection }) => (
     <motion.section
@@ -93,9 +93,16 @@ const Hero = ({ scrollToSection }) => (
                 >
                     <img
                         src={avatarImage}
-                        alt={personalInfo.name}
+                        alt={`Foto de ${personalInfo.name}`}
+                        // Es el elemento mas grande de la primera pantalla, o sea
+                        // el que mide el LCP: fetchPriority lo adelanta en la cola
+                        // del navegador. width/height reservan el hueco por si el
+                        // CSS tarda en aplicarse.
+                        width={512}
+                        height={512}
                         className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out"
                         loading="eager"
+                        fetchPriority="high"
                     />
                 </motion.div>
             </motion.div>

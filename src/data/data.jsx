@@ -1,32 +1,41 @@
 import React from 'react';
-import { Github, Linkedin } from 'lucide-react';
-import { SiGnubash, SiN8N, SiOpenai, SiPython } from 'react-icons/si';
+import { Github, Linkedin, ShieldCheck } from 'lucide-react';
+import {
+    SiDocker, SiFortinet, SiGnubash, SiN8N, SiOpenai,
+    SiProxmox, SiPython, SiVmware,
+} from 'react-icons/si';
 
 
 export const education = [
     {
-        year: "2024 - 2025",
-        degree: "CETI — Ciberseguridad",
-        institution: "Curso de Especialización FP (Ministerio de Educación, España)",
+        year: "ago. 2024 - jun. 2025",
+        degree: "Especialización en Ciberseguridad (CETI)",
+        institution: "CIFP Juan de Colonia · Burgos, España",
         tags: ["Hacking Ético", "Hardening", "Análisis de Vulnerabilidades", "Respuesta a Incidentes"],
     },
     {
-        year: "2022 - 2024",
-        degree: "Grado Superior ASIR",
-        institution: "Administración de Sistemas Informáticos en Red",
+        year: "sep. 2022 - may. 2024",
+        degree: "Técnico Superior en ASIR",
+        institution: "CIFP Juan de Colonia · Burgos, España",
         tags: ["Linux", "Windows Server", "Virtualización", "Redes", "Scripting"],
     },
     {
-        year: "2020 - 2022",
-        degree: "Ingeniería Civil en Computación",
-        institution: "Universidad de Talca, Chile — 5 semestres antes de emigrar a España",
+        year: "mar. 2020 - may. 2022",
+        degree: "Ingeniería en Informática",
+        institution: "Universidad de Talca, Chile · 6 semestres, interrumpida al trasladarme a España",
         tags: ["Programación", "Algoritmos", "Arquitectura", "Álgebra Lineal"],
+    },
+    {
+        year: "Complementaria",
+        degree: "Fortinet y VMware",
+        institution: "Cursos internos tras la incorporación a Norsol Eléctrica",
+        tags: ["FortiGate", "VLAN", "VPN", "Virtualización"],
     },
 ];
 
 export const languages = [
-    { name: 'Español', level: 'Nativo', flag: '🇪🇸', percent: 100 },
-    { name: 'Inglés',  level: 'B2',     flag: '🇬🇧', percent: 72  },
+    { name: 'Español', level: 'Nativo',     flag: '🇪🇸', percent: 100 },
+    { name: 'Inglés',  level: 'Intermedio', flag: '🇬🇧', percent: 60  },
 ];
 
 export const softSkills = [
@@ -47,14 +56,28 @@ export const projects = [
     },
     {
         id: 2,
-        title: "Infraestructura Homelab Segura",
+        title: "Infraestructura Segura con Docker y VPN",
         category: "Infraestructura & Redes",
-        description: "Despliegue de servicios en contenedores Docker con acceso remoto seguro vía VPN WireGuard. Incluye proxy inverso, autenticación centralizada y monitorización de recursos.",
+        description: "Proyecto final de ASIR. Despliegue de servicios en contenedores con acceso remoto vía VPN WireGuard, proxy inverso, autenticación centralizada y monitorización de recursos.",
         tech: ["Docker", "Raspberry Pi", "WireGuard", "Nginx Proxy Manager", "Authelia", "Grafana"],
-        link: "https://github.com/xenlor/tfg"
+        link: "https://github.com/xenlor/tfg-asir"
     },
     {
         id: 3,
+        title: "Homelab en Proxmox",
+        category: "Infraestructura & Automatización",
+        description: "Nodo Proxmox con ocho contenedores LXC funcionando a diario: proxy inverso con certificados automáticos, túnel Cloudflare, DNS propio para toda la casa, panel de estado y SAI que apaga el servidor solo cuando se va la luz. Las copias van en tres capas (disco aparte, fuera del nodo y fuera de casa) y cifradas con clave pública. Lo tengo documentado como cuaderno operativo para poder reconstruirlo desde cero, que ya hizo falta una vez.",
+        tech: ["Proxmox VE", "LXC", "Nginx Proxy Manager", "Cloudflare Tunnel", "AdGuard Home", "NUT", "age", "Bash"],
+    },
+    {
+        id: 4,
+        title: "Clasificador de Correo con IA",
+        category: "Automatización & IA",
+        description: "Automatización que mantiene limpio un buzón corporativo de Microsoft 365. Agrupa los correos por conversación, los clasifica con OpenAI usando salida estructurada por JSON Schema contra una veintena de categorías de negocio, y mueve cada hilo a su carpeta. Los correos marcados como pendientes se quedan intactos: la bandera manda sobre la IA.",
+        tech: ["n8n", "OpenAI API", "Microsoft Graph", "JSON Schema", "JavaScript"],
+    },
+    {
+        id: 5,
         title: "Linux Automation Tools",
         category: "Scripting & Bash",
         description: "Suite de herramientas CLI para administración de sistemas Linux. Destaca una implementación segura de 'Papelera de Reciclaje' para terminal (con recuperación y logging) y un gestor automatizado para la creación masiva de usuarios y grupos.",
@@ -66,9 +89,9 @@ export const projects = [
 export const personalInfo = {
     name: "Esteban",
     alias: "xenlor",
-    role: "SysAdmin & Ciberseguridad",
+    role: "Administración de Sistemas & Ciberseguridad",
     tagline: "Pasión por la tecnología, vocación por la seguridad.",
-    bio: "Desde Chile hasta España, mi carrera se define por la curiosidad. No solo administro sistemas; los estudio, los protejo y los optimizo. Usuario avanzado de IA y eterno estudiante de cómo funciona internet.",
+    bio: "Desde Chile hasta Burgos, mi carrera se define por la curiosidad. Administro la infraestructura de una empresa (Microsoft 365, Active Directory, red perimetral y ERP) y automatizo lo que aún se hace a mano. No solo mantengo sistemas: los estudio, los protejo y los rompo en mi laboratorio para entender por qué funcionan.",
     email: "contacto@xenlor.dev",
     socials: [
         { name: 'GitHub', icon: <Github size={20} />, url: 'https://github.com/xenlor' },
@@ -78,28 +101,30 @@ export const personalInfo = {
 
 export const experience = [
     {
-        period: "Marzo 2024 - Actualidad",
-        role: "Técnico Administrador de Sistemas",
-        company: "Norsol - Energía Solar",
-        summary: "Responsable del área de soporte técnico y ciberseguridad para una empresa de 80 personas.",
+        period: "jun. 2024 - Actualidad",
+        role: "Soporte y Administración de Sistemas IT",
+        company: "Norsol Eléctrica, S.L. · Burgos, España",
+        summary: "Llevo la infraestructura, la seguridad y el CRM/ERP de la empresa, y automatizo lo que antes se hacía a mano.",
         bullets: [
-            "Administración de Active Directory, Microsoft 365 y políticas de seguridad corporativa",
-            "Migración e implementación de Microsoft Dynamics 365 (ERP/CRM) desde cero",
-            "Automatizaciones con Power Automate para optimizar procesos empresariales",
-            "Soporte técnico integral como único responsable de IT para 80 empleados",
-            "Formación en ciberseguridad y concienciación del personal",
+            "Microsoft 365 (Exchange Online, SharePoint, Teams): migraciones, auditorías de permisos, control de acceso a sitios sensibles y automatización de aprobaciones documentales (ISO 9001)",
+            "Active Directory, servidores Windows/Linux, virtualización y copias de seguridad con verificación periódica de su integridad",
+            "Identidad y accesos: MFA en accesos críticos, VPN con doble factor para personal de campo y protocolos de alta y baja de empleados",
+            "Hardening y gestión de vulnerabilidades: despliegue de EDR corporativo (Microsoft Defender) y configuración de FortiGate (firewall, VLAN y VPN)",
+            "Plan de concienciación: campañas de phishing simulado y formación a empleados",
+            "Documentación de continuidad de negocio (DRP, PCN), protocolos y guías de usuario",
+            "Soporte y personalización de Dynamics 365 Business Central y Dynamics 365 Sales: cargas de datos, reglas de negocio y corrección de sincronizaciones",
+            "Automatizaciones y aplicaciones a medida (PowerShell, Python, n8n) y gestión de la adopción de IA generativa en el departamento",
         ],
         link: "https://norsol.es",
     },
     {
-        period: "2020 - 2021",
-        role: "Servicio Técnico a Domicilio",
-        company: "Freelance / Autónomo",
-        summary: "Soporte técnico especializado durante la pandemia COVID-19.",
+        period: "ene. 2021 - jul. 2022",
+        role: "Técnico de Mantenimiento de Ordenadores",
+        company: "Autónomo · Talca, Chile",
+        summary: "Asistencia técnica a usuarios en software y hardware.",
         bullets: [
-            "Diagnóstico y resolución de fallos hardware/software",
-            "Configuración de redes domésticas y software empresarial",
-            "Formateos, reinstalaciones y optimización de rendimiento",
+            "Diagnóstico, reparación y actualización de equipos y sistemas operativos",
+            "Resolución de incidencias de software y hardware a domicilio",
         ],
     },
 ];
@@ -270,5 +295,10 @@ export const stack = [
     { name: "Active Directory", icon: <WindowsADIcon className="text-[#0078D4]" />, description: "Gestión de identidades y accesos corporativos." },
     { name: "Dynamics 365", icon: <DynamicsIcon />, description: "Administración y personalización de soluciones ERP/CRM." },
     { name: "Business Central", icon: <BusinessCentralIcon />, description: "Gestión empresarial integral y finanzas." },
-    { name: "GenAI Tools", icon: <SiOpenai className="text-[#10A37F]" />, description: "Integración de IA generativa en flujos de trabajo." }
+    { name: "GenAI Tools", icon: <SiOpenai className="text-[#10A37F]" />, description: "Integración de IA generativa en flujos de trabajo." },
+    { name: "FortiGate", icon: <SiFortinet className="text-[#EE3124]" />, description: "Cortafuegos perimetral, segmentación en VLAN y VPN corporativa." },
+    { name: "VMware", icon: <SiVmware className="text-[#607078]" />, description: "Virtualización de servidores en entorno empresarial." },
+    { name: "Proxmox VE", icon: <SiProxmox className="text-[#E57000]" />, description: "Virtualización y contenedores LXC en infraestructura propia." },
+    { name: "Docker", icon: <SiDocker className="text-[#2496ED]" />, description: "Despliegue de servicios en contenedores." },
+    { name: "EDR / Defender", icon: <ShieldCheck className="text-[#0078D4]" />, description: "Detección y respuesta en endpoints, hardening y gestión de vulnerabilidades." }
 ];

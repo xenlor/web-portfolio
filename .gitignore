@@ -27,3 +27,7 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Documentacion interna de autohospedaje: lleva la topologia de la red de casa
+# (IPs, IDs de contenedor, comandos pct). Este repositorio es PUBLICO.
+docs/AUTOHOSPEDAJE.md

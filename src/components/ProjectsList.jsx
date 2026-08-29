@@ -36,7 +36,7 @@ const ProjectsList = () => (
             viewport={{ once: true }}
             className="text-gray-600 dark:text-gray-400 mb-12 max-w-2xl text-lg"
         >
-            Aquí muestro algunos de mis trabajos académicos y personales, enfocados en hardening de sistemas, scripts de automatización en Bash y despliegue de infraestructuras seguras.
+            Trabajos académicos y personales. Unos son de clase, otros los mantengo a diario. Los que tienen repositorio público llevan enlace.
         </motion.p>
 
         <motion.div
@@ -46,12 +46,23 @@ const ProjectsList = () => (
             whileInView="visible"
             viewport={{ once: true }}
         >
-            {projects.map((project) => (
-                <motion.a
+            {projects.map((project) => {
+                // No todos los proyectos tienen repositorio publico: el homelab
+                // vive en un repo privado y otros no tienen artefacto que ensenar.
+                // Sin esto quedaria un <a> sin href, que parece pulsable, no lleva
+                // a ninguna parte y ademas es un enlace roto para un lector de
+                // pantalla. Los que no tienen enlace se pintan como <div> y sin
+                // la flecha, que es la que promete que hay algo al otro lado.
+                const esEnlace = Boolean(project.link);
+                const Tarjeta = esEnlace ? motion.a : motion.div;
+                const propsEnlace = esEnlace
+                    ? { href: project.link, target: "_blank", rel: "noopener noreferrer" }
+                    : {};
+
+                return (
+                <Tarjeta
                     key={project.id}
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...propsEnlace}
                     variants={itemVariants}
                     whileHover={{ y: -10, scale: 1.02 }}
                     className={`group block relative rounded-3xl overflow-hidden hover:border-purple-500/40 dark:hover:border-purple-400/30 hover:shadow-[0_20px_60px_rgba(139,92,246,0.2)] dark:hover:shadow-[0_20px_60px_rgba(139,92,246,0.15)] transition-all duration-500 ${glassClass}`}
@@ -64,9 +75,11 @@ const ProjectsList = () => (
                             <span className="text-xs font-mono font-bold text-purple-600 dark:text-purple-300 uppercase tracking-wider px-3 py-1 bg-purple-100 dark:bg-purple-900/30 rounded-full border border-purple-200 dark:border-purple-500/20">
                                 {project.category}
                             </span>
-                            <div className="p-2 bg-gray-100 dark:bg-white/5 rounded-full group-hover:bg-gray-200 dark:group-hover:bg-white/10 transition-colors">
-                                <ArrowUpRight size={20} className="text-gray-500 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors" />
-                            </div>
+                            {esEnlace && (
+                                <div className="p-2 bg-gray-100 dark:bg-white/5 rounded-full group-hover:bg-gray-200 dark:group-hover:bg-white/10 transition-colors">
+                                    <ArrowUpRight size={20} className="text-gray-500 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors" />
+                                </div>
+                            )}
                         </div>
 
                         <div className="flex-grow space-y-3">
@@ -86,8 +99,9 @@ const ProjectsList = () => (
                             ))}
                         </div>
                     </div>
-                </motion.a>
-            ))}
+                </Tarjeta>
+                );
+            })}
         </motion.div>
     </RevealSection>
 );

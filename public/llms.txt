@@ -1,0 +1,41 @@
+# Esteban Castillo Loren (xenlor)
+
+> Técnico de sistemas con especialización en ciberseguridad, en Burgos, España.
+> Administro la infraestructura de una empresa (Microsoft 365, Active Directory,
+> servidores Windows y Linux, virtualización, red perimetral con FortiGate y
+> CRM/ERP con Dynamics 365) y automatizo con PowerShell, Python y n8n.
+
+Este sitio es un portfolio de una sola página. Las secciones son anclas dentro
+de la misma URL, no páginas independientes. El contenido se pinta con React, así
+que el HTML servido incluye un bloque `noscript` con lo esencial.
+
+## Experiencia
+
+- [Norsol Eléctrica](https://xenlor.dev/#sobre-mi): soporte y administración de sistemas IT desde junio de 2024. Identidad y accesos con MFA, hardening y gestión de vulnerabilidades, EDR corporativo (Microsoft Defender), FortiGate, continuidad de negocio (DRP y PCN) y concienciación en ciberseguridad.
+- [Autónomo, Talca (Chile)](https://xenlor.dev/#sobre-mi): mantenimiento de equipos entre 2021 y 2022.
+
+## Formación
+
+- Curso de Especialización en Ciberseguridad en Entornos de las TIC (CETI), CIFP Juan de Colonia, Burgos, 2024-2025.
+- Técnico Superior en Administración de Sistemas Informáticos en Red (ASIR), CIFP Juan de Colonia, Burgos, 2022-2024.
+- Ingeniería en Informática, Universidad de Talca (Chile), 6 semestres, interrumpida al trasladarse a España.
+
+## Proyectos
+
+- [IDS IoT con machine learning](https://github.com/xenlor/tfg-ceti): detección de intrusiones para IoT sobre Raspberry Pi, con Random Forest sobre el dataset CICIoT2023 y visualización en Grafana.
+- [Infraestructura segura con Docker y VPN](https://github.com/xenlor/tfg-asir): proyecto final de ASIR. Servicios en contenedores con acceso remoto por WireGuard, proxy inverso y autenticación centralizada.
+- [Linux Automation Tools](https://github.com/xenlor/scrip-papelera): herramientas de línea de comandos para administración de sistemas Linux.
+- Homelab en Proxmox: ocho contenedores LXC, proxy inverso con certificados automáticos, DNS propio, SAI con apagado automático y copias en tres capas cifradas con clave pública. Sin repositorio público.
+- Clasificador de correo con n8n y OpenAI: clasifica y archiva un buzón corporativo de Microsoft 365 con salida estructurada por JSON Schema. Sin repositorio público.
+
+## Contacto
+
+- [Correo](mailto:contacto@xenlor.dev): contacto@xenlor.dev
+- [GitHub](https://github.com/xenlor)
+- [LinkedIn](https://www.linkedin.com/in/esteban-castillo-loren-595652303/)
+
+## Optional
+
+- [Sitemap](https://xenlor.dev/sitemap.xml)
+- Idiomas: español nativo, inglés intermedio.
+- No busca trabajo activamente.

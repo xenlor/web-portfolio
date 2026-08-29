@@ -27,13 +27,23 @@ const Hero = ({ scrollToSection }) => (
                     <span>@{personalInfo.alias}</span>
                 </motion.div>
 
+                {/*
+                    El H1 es la senal mas fuerte que lee un buscador, y "Hola,
+                    soy Esteban" no dice a que se dedica ni cual es el apellido.
+                    aria-label le da el titular completo a buscadores y lectores
+                    de pantalla; lo que se ve en pantalla no cambia. El texto
+                    visible va en un span aria-hidden para no leerlo dos veces.
+                */}
                 <motion.h1
                     className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 dark:text-white"
+                    aria-label={`Esteban Castillo Loren, ${personalInfo.role}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                 >
-                    Hola, soy <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-600 via-blue-600 to-purple-600 dark:from-purple-400 dark:via-blue-400 dark:to-purple-400 animate-gradient-x">{personalInfo.name}.</span>
+                    <span aria-hidden="true">
+                        Hola, soy <br /> <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-600 via-blue-600 to-purple-600 dark:from-purple-400 dark:via-blue-400 dark:to-purple-400 animate-gradient-x">{personalInfo.name}.</span>
+                    </span>
                 </motion.h1>
 
                 <motion.h2

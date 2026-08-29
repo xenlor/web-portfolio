@@ -3,7 +3,7 @@ import { Github, Linkedin, ShieldCheck } from 'lucide-react';
 import {
     SiDocker, SiFortinet, SiGnubash, SiN8N, SiOpenai,
     SiProxmox, SiPython, SiVmware,
-} from 'react-icons/si';
+} from '../components/ui/IconosMarca';
 
 
 export const education = [

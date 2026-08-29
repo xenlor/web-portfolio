@@ -6,8 +6,8 @@
 > CRM/ERP con Dynamics 365) y automatizo con PowerShell, Python y n8n.
 
 Este sitio es un portfolio de una sola página. Las secciones son anclas dentro
-de la misma URL, no páginas independientes. El contenido se pinta con React, así
-que el HTML servido incluye un bloque `noscript` con lo esencial.
+de la misma URL, no páginas independientes. El HTML se sirve prerenderizado: el
+contenido está completo sin necesidad de ejecutar JavaScript.
 
 ## Experiencia
 

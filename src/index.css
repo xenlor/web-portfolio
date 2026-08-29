@@ -86,4 +86,10 @@ body {
     animation: none !important;
     will-change: auto;
   }
+  /* El desplazamiento suave es el movimiento mas grande de la pagina: recorre
+     miles de pixeles de golpe. Para quien tiene activado "reducir movimiento"
+     en su sistema, el salto directo es lo correcto. */
+  html {
+    scroll-behavior: auto;
+  }
 }

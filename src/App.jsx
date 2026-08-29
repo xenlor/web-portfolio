@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Menu, X, ArrowUp, Rocket, Terminal, Zap } from 'lucide-react';
 import { usePerformance } from './context/PerformanceContext';
@@ -68,16 +68,31 @@ export default function App() {
   }, []);
 
 
+  // Mientras dura un scroll lanzado desde el menu, el listener de scroll sigue
+  // disparandose y pisaria activeSection con cada seccion por la que se pasa:
+  // al pulsar "Contacto" desde arriba, el indicador iba saltando Inicio ->
+  // Sobre mi -> Proyectos antes de llegar. Con esta bandera se silencia.
+  const navegandoAlPulsar = useRef(false);
+  const finDeScroll = useRef(null);
+
   const scrollToSection = (id) => {
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+    if (!element) return;
+
+    navegandoAlPulsar.current = true;
     setActiveSection(id);
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Un solo temporizador, reiniciado en cada clic. Nada de escuchar
+    // "scrollend" aqui: registrar un listener por clic los va acumulando, y
+    // ademas ese evento tambien se dispara por scrolls que no vienen del menu
+    // (entrar con #ancla, por ejemplo), lo que dejaba la bandera atascada y el
+    // indicador congelado en una seccion para siempre.
+    clearTimeout(finDeScroll.current);
+    finDeScroll.current = setTimeout(() => {
+      navegandoAlPulsar.current = false;
+    }, 900);
   };
 
   const scrollToTop = () => {
@@ -88,14 +103,16 @@ export default function App() {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    let pendiente = false;
+
+    const medir = () => {
+      pendiente = false;
       const currentScroll = window.scrollY;
 
-      if (currentScroll > 400) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
+      setShowScrollTop(currentScroll > 400);
+
+      // Si el scroll lo lanzo el propio menu, el destino ya esta puesto.
+      if (navegandoAlPulsar.current) return;
 
       if ((window.innerHeight + currentScroll) >= document.body.offsetHeight - 50) {
         setActiveSection('contacto');
@@ -105,15 +122,29 @@ export default function App() {
       const sections = navItems.map(item => document.getElementById(item.id));
       const scrollPosition = currentScroll + 250;
 
-      sections.forEach(section => {
-        if (section && section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
-          setActiveSection(section.id);
-        }
-      });
+      const actual = sections.find(section =>
+        section &&
+        section.offsetTop <= scrollPosition &&
+        (section.offsetTop + section.offsetHeight) > scrollPosition
+      );
+      if (actual) setActiveSection(actual.id);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Leer offsetTop obliga al navegador a recalcular la maquetacion. Hacerlo
+    // en cada evento de scroll produce tirones, mas aun con las animaciones
+    // corriendo. Se agrupa en un fotograma.
+    const handleScroll = () => {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(medir);
+    };
+
+    medir();   // sin esto, recargar a media pagina deja marcado "Inicio"
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(finDeScroll.current);
+    };
   }, []);
 
   return (

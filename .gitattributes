@@ -1,0 +1,7 @@
+# Binarios: sin conversion de saltos de linea. Sin esto git los trata como
+# texto en Windows, cambia LF por CRLF dentro del fichero y los corrompe.
+*.pdf   binary
+*.png   binary
+*.webp  binary
+*.ico   binary
+*.woff2 binary
